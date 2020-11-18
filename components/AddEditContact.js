@@ -189,7 +189,6 @@ function AddContact({route, navigation}){
                 onBlur={()=> isValidLastName(lastname)}
               />
         </View>
-        {/* <Text style={styles.errorText}>{ErrorNameNew}</Text> */}
               <TextInput
                 style={styles.phoneEmailTextInputStyle}
                 placeholder="Phone Number"
