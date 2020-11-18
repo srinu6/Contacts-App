@@ -7,8 +7,6 @@ import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ImagePicker from 'react-native-image-crop-picker';
 import { isValidFirstName, isValidLastName, isValidPhoneNumber, isValidEmail } from '../Validations/Validation'
-// import { renderInner, renderHeader} from '../BottomSheet/Header'
-//import { FromCamera, FromLibrary } from '../BottomSheet/Header'
 
 function AddContact({route, navigation}){
   const {id, boolvalue} = route.params;
