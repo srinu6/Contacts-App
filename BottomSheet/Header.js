@@ -3,7 +3,7 @@ import {View,TextInput,Text,Alert,TouchableOpacity,ImageBackground,StyleSheet} f
 import ImagePicker from 'react-native-image-crop-picker';
 import Animated from 'react-native-reanimated';
 import BottomSheetOriginal from 'reanimated-bottom-sheet';
-
+//import {choosePhotoFromLibrary, takePhotoFromCamera} from '../components/AddContact'
 
 const bottomsheet = React.createRef();
 // let req=true;
