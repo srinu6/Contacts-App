@@ -7,7 +7,7 @@ import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ImagePicker from 'react-native-image-crop-picker';
 import { isValidFirstName, isValidLastName, isValidPhoneNumber, isValidEmail } from '../Validations/Validation'
-// push checking
+// push checking new branch
 function AddContact({route, navigation}){
   const {id, boolvalue} = route.params;
   const contact = useSelector((state) => state.contact.contact);
