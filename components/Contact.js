@@ -1,50 +1,50 @@
-import { ListItem, Left, Right, Body, Thumbnail } from "native-base";
-import React from "react";
+import { ListItem, Left, Right, Body, Thumbnail } from 'native-base';
+import React from 'react';
 import Avatar from 'react-native-user-avatar';
-import {Alert, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { Alert, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
-import { useDispatch } from "react-redux";
-import { deleteContact } from "../actions/contactAction";
-import { useNavigation } from "@react-navigation/native";
-const Contact = ({contact}) => {
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../Actions/ContactAction';
+import { useNavigation } from '@react-navigation/native';
+import { deletePopup } from '../Constant/Types'
+
+const Contact = ({ contact }) => {
   const navigation= useNavigation();
   const dispatch = useDispatch();
   const { firstname, lastname, phone, id, image } = contact;
-  const AvatarFirstName= firstname;
-  const AvatarLastName= lastname;
-  const AvatarName= AvatarFirstName.concat(" ").concat(AvatarLastName);
+  const avatarName= firstname.concat(" ").concat(lastname);
   const deleting=()=>{
-    Alert.alert('DELETING!', 'Are you sure, you want yo delete?', [
+    Alert.alert('DELETING!', deletePopup, [
       {text: 'YES', onPress:() => dispatch(deleteContact(id))},
       {text: 'NO'}
     ])
   }
-  let AvatarImage=null;
+  let avatarImage= null;
   if(image === null ){
-    AvatarImage= <Avatar name={AvatarName} size={45} round={true} /> 
+    avatarImage= <Avatar name={avatarName} size={45} round={true} /> 
   }else{
     const source={uri: image}
-    AvatarImage= <Thumbnail source={source} style={styles.thumbStyle} />
+    avatarImage= <Thumbnail source={source} style={styles.thumbStyle} />
   }
   return ( 
-  <>
+    <>
       <ListItem avatar>
-            <TouchableOpacity style={styles.detailsOpacity} onPress={() => navigation.navigate('Details', {id: id} )}>
-                <Left> 
-                  {AvatarImage}
-                </Left>
-                <Body style={styles.bodyStyle}>
-                  <Text style={styles.textStyle}>{firstname} {lastname}</Text>
-                  <Text style={styles.textColor}>{phone}</Text>
-                </Body>
-                <Right style={styles.iconStyle}>
-                  <IconEntypo name="trash" size={20} onPress={() => deleting()} />
-                  <IconEntypo name="info-with-circle" size={20} onPress={() => navigation.navigate('Details', {id: id} )} /> 
-                  <IconEntypo name="pencil" size={20} onPress={() => navigation.navigate('AddContact', {id: id, boolvalue: false} )} /> 
-                </Right>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.detailsOpacity} onPress={() => navigation.navigate('Details', {contactId: id} )}>
+              <Left> 
+                {avatarImage}
+              </Left>
+              <Body style={styles.bodyStyle}>
+                <Text style={styles.textStyle}>{firstname} {lastname}</Text>
+                <Text style={styles.textColor}>{phone}</Text>
+              </Body>
+              <Right style={styles.iconStyle}>
+                <IconEntypo name="trash" size={20} onPress={() => deleting()} />
+                <IconEntypo name="info-with-circle" size={20} onPress={() => navigation.navigate('Details', {contactId: id} )} /> 
+                <IconEntypo name="pencil" size={20} onPress={() => navigation.navigate('AddContact', {contactId: id, addorEdit: false} )} /> 
+              </Right>
+          </TouchableOpacity>
       </ListItem>     
-  </>   
+    </>   
   );
 };
 export default Contact;

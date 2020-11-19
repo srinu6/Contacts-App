@@ -1,26 +1,26 @@
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Header, Item, Input, Icon, List, Text, Button } from 'native-base';
-import {StyleSheet} from 'react-native';
-import React,{useState} from "react";
+import { StyleSheet } from 'react-native';
+import React,{ useState } from "react";
 import { ScrollView } from 'react-native';
-import { useSelector } from "react-redux";
-import Contact from "./Contact";
+import { useSelector } from 'react-redux';
+import Contact from './Contact';
 const Device = require('react-native-device-detection');
 
 function Contacts({navigation}) {
-  let idr=Math.random();
-  let differentphonestyle=null;
-  let SearchedContacts=null;
-  const contacts = useSelector((state) => state.contact.contacts);
-  const [search, setsearch] = useState("");
-  if(search===""){
-    SearchedContacts= contacts.map((contact) => (
+  let ramdomId= Math.random();
+  let differentPhoneStyle= null;
+  let searchedContacts= null;
+  const contacts= useSelector((state) => state.contact.contacts);
+  const [search, setsearch]= useState("");
+  if(search=== ""){
+    searchedContacts= contacts.map((contact) => (
                        <Contact contact={contact} key={contact.id} />
                       ))
   }else{
-    SearchedContacts = contacts.filter((contact) => {
+    searchedContacts= contacts.filter((contact) => {
                         const contactLowercase=(contact.firstname+' '+contact.lastname).toLowerCase();
-                        const searchLowercase = search.toLowerCase();
+                        const searchLowercase=search.toLowerCase();
                         return contactLowercase.indexOf(searchLowercase)> -1
                       })
                       .map((contact) => (
@@ -30,33 +30,33 @@ function Contacts({navigation}) {
     const LogoTitle=()=>{
       return(
         <Header searchBar rounded>
-              <Item>
-                <Icon name="ios-search" />
-                <Input placeholder="Search"
-                       value={search} 
-                       onChangeText={(text)=>setsearch(text)} 
-                       keyboardType='ascii-capable'  
-                       />
-                <Icon name="ios-people" />
-              </Item>
-              <Button transparent>
-                <Text>Search</Text>
-              </Button>
+          <Item>
+            <Icon name="ios-search" />
+            <Input placeholder="Search"
+                    value={search} 
+                    onChangeText={(text)=>setsearch(text)} 
+                    keyboardType='ascii-capable'  
+                    />
+            <Icon name="ios-people" />
+          </Item>
+          <Button transparent>
+            <Text>Search</Text>
+          </Button>
         </Header>
       )
     }
     if(Device.isIphoneX){
-      differentphonestyle = <TouchableOpacity
+      differentPhoneStyle = <TouchableOpacity
                               style={styles.foriphoneX}
-                              onPress={() => navigation.navigate('AddContact', {id: idr, boolvalue: true} )}>
+                              onPress={() => navigation.navigate('AddContact', {contactId: ramdomId, addorEdit: true} )}>
                               <Text style={styles.bottonStyle}>
                                 Add new Contact
                               </Text>
                             </TouchableOpacity>
     }else{
-      differentphonestyle = <TouchableOpacity
+      differentPhoneStyle = <TouchableOpacity
                               style={styles.othenThanIphoneX}
-                              onPress={() => navigation.navigate('AddContact', {id: idr, boolvalue: true} )}>
+                              onPress={() => navigation.navigate('AddContact', {contactId: ramdomId, addorEdit: true} )}>
                               <Text style={styles.bottonStyle}>
                                 Add new Contact
                               </Text>
@@ -67,10 +67,10 @@ function Contacts({navigation}) {
          <LogoTitle />
           <ScrollView>
               <List>
-                      {SearchedContacts}
+                {searchedContacts}
               </List>
           </ScrollView>
-          {differentphonestyle}
+          {differentPhoneStyle}
       </>
     );
 }

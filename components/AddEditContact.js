@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateContact, getContact } from "../actions/contactAction";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateContact, getContact } from '../Actions/ContactAction';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {View,TextInput,Text,Alert,TouchableOpacity,ImageBackground,StyleSheet} from 'react-native';
+import { View, TextInput, Text, Alert, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ImagePicker from 'react-native-image-crop-picker';
-import { isValidFirstName, isValidLastName, isValidPhoneNumber, isValidEmail } from '../Validations/Validation'
+import { isValidName, isValidPhoneNumber, isValidEmail } from '../Utils/Validation'
+import { firstNameError, lastNameError, emailError, phoneNumberError, correctInformation, contactAdded } from '../Constant/Types'
 
-function AddContact({route, navigation}){
-  const {id, boolvalue} = route.params;
+function AddContact({ route, navigation }){
+  const { contactId, addorEdit } = route.params;
   const contact = useSelector((state) => state.contact.contact);
   const dispatch = useDispatch();
   const [firstname, setFirstName] = useState("");
@@ -18,16 +19,16 @@ function AddContact({route, navigation}){
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState(null);
   
-  if(!boolvalue){
+  if(!addorEdit){
    useEffect(() => {
-    if (contact !== null && contact !==undefined) {
+    if (contact !== null && contact !== undefined) {
       setFirstName(contact.firstname);
       setLastName(contact.lastname);
       setPhone(contact.phone);     
       setEmail(contact.email);
       setImage(contact.image);
     }
-    dispatch(getContact(id));
+    dispatch(getContact(contactId));
    }, [contact]);
   }
 
@@ -41,22 +42,27 @@ function AddContact({route, navigation}){
       email: email,
       image: image,
     });
-    if(isValidEmail(email) && isValidFirstName(firstname) && isValidLastName(lastname) && isValidPhoneNumber(phone)){
+     const validEmailCheck= isValidEmail(email)
+     const validFirstNameCheck= isValidName(firstname) 
+     const validLastNameCheck= isValidName(lastname) 
+     const validPhoneCheck= isValidPhoneNumber(phone)
+
+    if(validEmailCheck && validFirstNameCheck && validLastNameCheck && validPhoneCheck){
       dispatch(updateContact(update_contact));
-      Alert.alert('Yeah!', 'The contact has been added.', [{text: 'Ok'}])
+      Alert.alert('Yeah!', contactAdded, [{text: 'Ok'}])
       navigation.navigate('Contacts');       
-    } else if(!isValidEmail(email) || !isValidFirstName(firstname) || !isValidLastName(lastname) || !isValidPhoneNumber(phone)) {
-        if(!isValidFirstName(firstname)){
-          Alert.alert('OOPS!', 'Please enter a valid First Name');
-        }else if(!isValidLastName(lastname)){
-          Alert.alert('OOPS!', 'Please enter a valid Last Name');
-        }else if(!isValidPhoneNumber(phone)){
-          Alert.alert('OOPS!', 'Please enter a valid Phone Number');
-        }else if(!isValidEmail(email)){
-          Alert.alert('OOPS!', 'Please enter a valid Email id');
+    } else if(!validEmailCheck || !validFirstNameCheck || !validLastNameCheck || !validPhoneCheck) {
+        if(!validFirstNameCheck){
+          Alert.alert('OOPS!', firstNameError);
+        }else if(!validLastNameCheck){
+          Alert.alert('OOPS!', lastNameError);
+        }else if(!validPhoneCheck){
+          Alert.alert('OOPS!', phoneNumberError);
+        }else if(!validEmailCheck){
+          Alert.alert('OOPS!', emailError);
         }       
     }else{
-      Alert.alert('OOPS!', 'Please enter correct information.', [
+      Alert.alert('OOPS!', correctInformation, [
       {text: 'Okay',}])
     }
   }    
@@ -121,13 +127,12 @@ function AddContact({route, navigation}){
         <TouchableOpacity onPress={() => navigation.navigate('Contacts')}>
           <Icon name="arrow-left" size={30} />
         </TouchableOpacity>
-        <Text style={styles.headingText}>{boolvalue=== true ? 'Add Contact' : 'Edit Contact'}</Text> 
+        <Text style={styles.headingText}>{addorEdit=== true ? 'Add Contact' : 'Edit Contact'}</Text> 
       </View>                     
     )
   }
   
-  return (
-    
+  return (   
    <View style={styles.viewFlex}>
     
         <BottomSheet
@@ -144,32 +149,32 @@ function AddContact({route, navigation}){
         }}>
            <Title />
         <View style={{alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => bottomsheet.current.snapTo(0)}>
-              <View
-                style={styles.imageBackGroundView}>
-                <ImageBackground
-                  source={{
-                    uri: image,
-                  }}
-                  style={styles.imageBackGround}
-                  imageStyle={{borderRadius: 45}}>
-                  <View
-                    style={styles.photoIconView}>
-                    <Icon
-                      name="camera"
-                      size={35}
-                      color="#fff"
-                      style={styles.photoIcon}
-                    />
-                  </View>
-                </ImageBackground>
-              </View>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => bottomsheet.current.snapTo(0)}>
+            <View
+              style={styles.imageBackGroundView}>
+              <ImageBackground
+                source={{
+                  uri: image,
+                }}
+                style={styles.imageBackGround}
+                imageStyle={{borderRadius: 45}}>
+                <View
+                  style={styles.photoIconView}>
+                  <Icon
+                    name="camera"
+                    size={35}
+                    color="#fff"
+                    style={styles.photoIcon}
+                  />
+                </View>
+              </ImageBackground>
+            </View>
+          </TouchableOpacity>
             
 
-            <Text style={styles.photoText}>
-              Photo
-            </Text>
+          <Text style={styles.photoText}>
+            Photo
+          </Text>
      </View>
 
     <View>
@@ -179,16 +184,16 @@ function AddContact({route, navigation}){
                 placeholder="First Name"
                 value={firstname}
                 onChangeText={text => setFirstName(text)}
-                onBlur={()=> isValidFirstName(firstname)}
+                onBlur={()=> isValidName(firstname)}
               />
               <TextInput
                 style={styles.nameTextInputStyle}
                 placeholder="Last Name"
                 value={lastname}
                 onChangeText={text => setLastName(text)}
-                onBlur={()=> isValidLastName(lastname)}
+                onBlur={()=> isValidName(lastname)}
               />
-        </View>
+          </View>
               <TextInput
                 style={styles.phoneEmailTextInputStyle}
                 placeholder="Phone Number"
@@ -208,7 +213,7 @@ function AddContact({route, navigation}){
               />
  
             <TouchableOpacity style={styles.commandButton} onPress={(event) => onUpdateContact(event)}>
-                <Text style={styles.panelButtonTitle}>{boolvalue=== true ? 'Create Contact' : 'Update Contact'}</Text>
+                <Text style={styles.panelButtonTitle}>{addorEdit=== true ? 'Create Contact' : 'Update Contact'}</Text>
             </TouchableOpacity>
       </View>  
       </Animated.View>
@@ -249,13 +254,14 @@ const styles = StyleSheet.create({
     color:'red' 
   },
   headingText: {
-    marginTop: 5, 
+    marginTop: 10, 
     marginBottom:15,
     fontSize: 18, 
     marginLeft: 20,
     fontWeight: 'bold'
   },
   headingView:{
+    marginTop: 15,
     flexDirection: "row"
   },
   photoText: {
@@ -288,8 +294,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  
+  }, 
   commandButton: {
     padding: 10,
     borderRadius: 10,

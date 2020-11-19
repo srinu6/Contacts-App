@@ -8,12 +8,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { Provider } from "react-redux";
-import Contacts from './components/Contacts';
-import store from "./store";
+import Contacts from './Components/ContactList';
+import store from './Store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import AddContact from './components/AddEditContact';
-import ShowContact from './components/ShowContact';
+import AddContact from './Components/AddEditContact';
+import ShowContact from './Components/ShowContact';
 const Stack = createStackNavigator();
 function App(){
   return (
@@ -21,9 +21,9 @@ function App(){
       <Provider store={store}>
        <NavigationContainer>
           <Stack.Navigator initialRouteName='Contacts'>
-                <Stack.Screen name='Contacts' component={Contacts} options={{ headerShown: false }} /> 
-                <Stack.Screen name='AddContact' component={AddContact} options={{ headerShown: false }} />
-                <Stack.Screen name='Details' component={ShowContact} options={{ title:'Show Contact'}} />
+              <Stack.Screen name='Contacts' component={Contacts} options={{ headerShown: false }} /> 
+              <Stack.Screen name='AddContact' component={AddContact} options={{ headerShown: false }} />
+              <Stack.Screen name='Details' component={ShowContact} options={{ title:'Show Contact'}} />
           </Stack.Navigator>
        </NavigationContainer>       
       </Provider>      

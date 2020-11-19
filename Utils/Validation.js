@@ -1,19 +1,9 @@
 import React from 'react';
-import {StyleSheet} from 'react-native'
 
-export const isValidFirstName=(firstName)=>{
+export const isValidName=(name)=>{
   const regexName=/^[a-zA-Z_.-]+$/;
-  const firstNameCheck= regexName.test(firstName)
-  if(!firstNameCheck){
-    return false;
-  }      
-  return true; 
-}
-
-export const isValidLastName=(lastName)=>{
-  const regexName=/^[a-zA-Z_.-]+$/;
-  const lastNameValid= regexName.test(lastName)
-  if(!lastNameValid){
+  const nameCheck= regexName.test(name)
+  if(!nameCheck){
     return false;
   }      
   return true; 
@@ -36,13 +26,3 @@ export const isValidEmail=(email)=>{
     }
     return true;
 }
-
-
-
-const styles = StyleSheet.create({
-    errorText:{
-        color:'red',
-        padding:50, 
-        marginBottom:20 
-      },
-})
