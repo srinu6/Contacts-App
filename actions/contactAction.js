@@ -4,8 +4,7 @@ import {
     UPDATE_CONTACT,
     DELETE_CONTACT,
     VIEW_CONTACT,
-    PHONE_ERROR,
-  } from "../constant/types";
+  } from "../Constant/Types";
   
   // actions
   export const addContact = (contact) => ({
@@ -31,11 +30,6 @@ import {
   export const viewContact = (contact) => ({
     type: VIEW_CONTACT,
     payload: contact,
-  });
-
-  export const phoneError = (string) => ({
-    type: PHONE_ERROR,
-    payload: string,
   });
 
 

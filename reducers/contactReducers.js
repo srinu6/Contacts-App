@@ -1,11 +1,4 @@
-import {
-    CREATE_CONTACT,
-    GET_CONTACT,
-    UPDATE_CONTACT,
-    DELETE_CONTACT,
-    VIEW_CONTACT,
-    PHONE_ERROR,
-  } from "../constant/types";
+import { CREATE_CONTACT, GET_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, VIEW_CONTACT } from '../Constant/Types';
   
   const intialState = {
     contacts: [
@@ -163,11 +156,6 @@ import {
             contacts: state.contacts.map((contact)  =>
             contact.id == action.payload.id ? action.payload : contact
             )
-          };
-        case PHONE_ERROR:
-          return {
-            ...state,
-            phonenumbervalidation: action.payload
           };
   
         default:

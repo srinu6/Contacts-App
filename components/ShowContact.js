@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getContact} from "../actions/contactAction";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContact} from '../Actions/ContactAction';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; 
 import {View,Text,TouchableOpacity,ImageBackground,StyleSheet} from 'react-native';
+
 const ShowContact = ({route, navigation}) => {
-  const {id} = route.params; 
+  const {contactId} = route.params; 
   const dispatch = useDispatch();
   const contact = useSelector((state) => state.contact.contact);
   const [firstname, setFirstName] = useState("");
@@ -21,7 +22,7 @@ const ShowContact = ({route, navigation}) => {
       setEmail(contact.email);
       setImage(contact.image);
     }
-    dispatch(getContact(id));
+    dispatch(getContact(contactId));
   }, [contact]);
 
   return (
@@ -59,7 +60,7 @@ const ShowContact = ({route, navigation}) => {
       </View>
       </View>
       <View style={styles.userInfoSection}>
-      <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate('AddContact', {id: id, boolvalue: false} )}>
+      <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate('AddContact', {contactId: contactId, addorEdit: false} )}>
           <Text style={styles.panelButtonTitle}>Edit Contact</Text>
       </TouchableOpacity>
       </View>
