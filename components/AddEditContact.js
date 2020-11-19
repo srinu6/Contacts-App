@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateContact, getContact } from "../actions/contactAction";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateContact, getContact } from '../actions/contactAction';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {View,TextInput,Text,Alert,TouchableOpacity,ImageBackground,StyleSheet} from 'react-native';
+import { View, TextInput, Text, Alert, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ImagePicker from 'react-native-image-crop-picker';
