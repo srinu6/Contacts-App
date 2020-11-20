@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateContact, getContact } from '../Actions/ContactAction';
+import { updateContact, addContact, getContact } from '../Actions/ContactAction';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, TextInput, Text, Alert, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -11,7 +11,8 @@ import { firstNameError, lastNameError, emailError, phoneNumberError, correctInf
 
 function AddContact({ route, navigation }){
   const { contactId, addorEdit } = route.params;
-  const contact = useSelector((state) => state.contact.contact);
+  const contact = addorEdit === false ? useSelector((state) => state.contact.contact) : null
+  const contacts=useSelector((state) => state.contact.contacts)
   const dispatch = useDispatch();
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -34,8 +35,8 @@ function AddContact({ route, navigation }){
 
   const onUpdateContact = (event) => {
     event.preventDefault();
-    const update_contact = Object.assign(contact, {
-      id: Math.random(),
+    const update_contact = Object.assign(contacts, {
+      id: contactId,
       firstname: firstname,
       lastname: lastname,
       phone: phone,
@@ -48,7 +49,7 @@ function AddContact({ route, navigation }){
      const validPhoneCheck= isValidPhoneNumber(phone)
 
     if(validEmailCheck && validFirstNameCheck && validLastNameCheck && validPhoneCheck){
-      dispatch(updateContact(update_contact));
+      dispatch(addorEdit === true ? addContact(update_contact) : updateContact(update_contact));
       Alert.alert('Yeah!', contactAdded, [{text: 'Ok'}])
       navigation.navigate('Contacts');       
     } else if(!validEmailCheck || !validFirstNameCheck || !validLastNameCheck || !validPhoneCheck) {
