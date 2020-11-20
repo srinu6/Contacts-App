@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import React,{ useState } from "react";
 import { ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
-import Contact from './Contact';
+import Contact from './contact';
 const Device = require('react-native-device-detection');
 
 function Contacts({navigation}) {

@@ -4,9 +4,9 @@ import Avatar from 'react-native-user-avatar';
 import { Alert, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from '../Actions/ContactAction';
+import { deleteContact } from '../actions/contactAction';
 import { useNavigation } from '@react-navigation/native';
-import { deletePopup } from '../Constant/Types'
+import { deletePopup } from '../constant/types'
 
 const Contact = ({ contact }) => {
   const navigation= useNavigation();
