@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateContact, addContact, getContact } from '../Actions/ContactAction';
+import { updateContact, addContact, getContact } from '../actions/contactAction';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, TextInput, Text, Alert, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ImagePicker from 'react-native-image-crop-picker';
-import { isValidName, isValidPhoneNumber, isValidEmail } from '../Utils/Validation'
-import { firstNameError, lastNameError, emailError, phoneNumberError, correctInformation, contactAdded } from '../Constant/Types'
+import { isValidName, isValidPhoneNumber, isValidEmail } from '../Utils/validation'
+import { firstNameError, lastNameError, emailError, phoneNumberError, correctInformation, contactAdded } from '../constant/types'
 
 function AddContact({ route, navigation }){
   const { contactId, addorEdit } = route.params;

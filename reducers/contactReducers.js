@@ -1,4 +1,4 @@
-import { CREATE_CONTACT, GET_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, VIEW_CONTACT } from '../Constant/Types';
+import { CREATE_CONTACT, GET_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, VIEW_CONTACT } from '../constant/types';
   
   const intialState = {
     contacts: [

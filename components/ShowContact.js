@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContact} from '../Actions/ContactAction';
+import { getContact} from '../actions/contactAction';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; 
 import {View,Text,TouchableOpacity,ImageBackground,StyleSheet} from 'react-native';
 

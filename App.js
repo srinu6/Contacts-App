@@ -8,12 +8,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { Provider } from "react-redux";
-import Contacts from './Components/ContactList';
-import store from './Store';
+import Contacts from './components/contactList';
+import store from './store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import AddContact from './Components/AddEditContact';
-import ShowContact from './Components/ShowContact';
+import AddContact from './components/addEditContact';
+import ShowContact from './components/showContact';
 const Stack = createStackNavigator();
 function App(){
   return (
