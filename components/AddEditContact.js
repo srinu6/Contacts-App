@@ -6,7 +6,7 @@ import { View, TextInput, Text, Alert, TouchableOpacity, ImageBackground, StyleS
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ImagePicker from 'react-native-image-crop-picker';
-import { isValidName, isValidPhoneNumber, isValidEmail } from '../utils/validation'
+import { isValidName, isValidPhoneNumber, isValidEmail } from '../Utils/Validation'
 import { firstNameError, lastNameError, emailError, phoneNumberError, correctInformation, contactAdded } from '../constant/types'
 
 function AddContact({ route, navigation }){
