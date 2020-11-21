@@ -50,7 +50,7 @@ function Contacts({navigation}) {
                               style={styles.foriphoneX}
                               onPress={() => navigation.navigate('AddContact', {contactId: ramdomId, addorEdit: true} )}>
                               <Text style={styles.bottonStyle}>
-                                Add new Contact
+                                Add New Contact
                               </Text>
                             </TouchableOpacity>
     }else{
@@ -58,7 +58,7 @@ function Contacts({navigation}) {
                               style={styles.othenThanIphoneX}
                               onPress={() => navigation.navigate('AddContact', {contactId: ramdomId, addorEdit: true} )}>
                               <Text style={styles.bottonStyle}>
-                                Add new Contact
+                                Add New Contact
                               </Text>
                             </TouchableOpacity>
     }  
