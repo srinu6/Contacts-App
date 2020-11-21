@@ -1,7 +1,3 @@
 # Contacts Application using React Native
 
-
-<video width="240" height="600" autoplay>
-  <source src="Contacts-Application-Screen-Recording.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<img src='https://user-images.githubusercontent.com/46079085/99878693-3d634b00-2c2d-11eb-9f93-3486fd97d0bc.gif'>
