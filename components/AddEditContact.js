@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateContact, addContact, getContact } from '../actions/contactAction';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { View, TextInput, Text, Alert, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
+import { View, TextInput, Text, Alert, TouchableOpacity, ImageBackground, StyleSheet, ScrollView } from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -134,6 +134,7 @@ function AddContact({ route, navigation }){
   }
   
   return (   
+    
    <View style={styles.viewFlex}>
     
         <BottomSheet
@@ -148,8 +149,10 @@ function AddContact({ route, navigation }){
         <Animated.View style={{margin: 20,
           opacity: Animated.add(0.1, Animated.multiply(animate, 1.0)),
         }}>
+          <ScrollView> 
            <Title />
-        <View style={{alignItems: 'center'}}>
+       
+        <View style={styles.bottonSheetCenter}>
           <TouchableOpacity onPress={() => bottomsheet.current.snapTo(0)}>
             <View
               style={styles.imageBackGroundView}>
@@ -177,9 +180,10 @@ function AddContact({ route, navigation }){
             Photo
           </Text>
      </View>
-
+   
     <View>
           <View style={styles.fullNameRow}>
+              
               <TextInput
                 style={styles.nameTextInputStyle}
                 placeholder="First Name"
@@ -217,8 +221,10 @@ function AddContact({ route, navigation }){
                 <Text style={styles.panelButtonTitle}>{addorEdit=== true ? 'Create Contact' : 'Update Contact'}</Text>
             </TouchableOpacity>
       </View>  
+      </ScrollView> 
       </Animated.View>
-  </View>     
+  </View>   
+   
   );
 }
 
@@ -237,7 +243,8 @@ const styles = StyleSheet.create({
     flex:1
   },
   bottonSheetCenter:{
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop:10,
   },
   phoneEmailTextInputStyle: {
     height: 40, 
@@ -255,14 +262,13 @@ const styles = StyleSheet.create({
     color:'red' 
   },
   headingText: {
-    marginTop: 10, 
     marginBottom:15,
-    fontSize: 18, 
+    fontSize: 20, 
     marginLeft: 20,
     fontWeight: 'bold'
   },
   headingView:{
-    marginTop: 15,
+    marginTop: 20,
     flexDirection: "row"
   },
   photoText: {
