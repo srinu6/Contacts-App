@@ -4,7 +4,7 @@ import {
     UPDATE_CONTACT,
     DELETE_CONTACT,
     VIEW_CONTACT,
-  } from "../constant/types";
+  } from "../constant/type";
   
   // actions
   export const addContact = (contact) => ({
