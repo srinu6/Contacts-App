@@ -8,7 +8,7 @@ import Contact from './contacts';
 const Device = require('react-native-device-detection');
 
 function Contacts({navigation}) {
-  let ramdomId = Math.random();
+  const randomId = Math.random();
   let differentPhoneStyle = null;
   let searchedContacts = null;
   const contacts = useSelector((state) => state.contact.contacts);
@@ -21,9 +21,9 @@ function Contacts({navigation}) {
     searchedContacts = contacts
       .filter((contact) => {
         const contactLowercase = (
-          contact.firstname +
+          contact.firstName +
           ' ' +
-          contact.lastname
+          contact.lastName
         ).toLowerCase();
         const searchLowercase = search.toLowerCase();
         return contactLowercase.indexOf(searchLowercase) > -1;
@@ -55,7 +55,7 @@ function Contacts({navigation}) {
         style={styles.foriphoneX}
         onPress={() =>
           navigation.navigate('AddContact', {
-            contactId: ramdomId,
+            contactId: randomId,
             addorEdit: true,
           })
         }>
@@ -68,7 +68,7 @@ function Contacts({navigation}) {
         style={styles.othenThanIphoneX}
         onPress={() =>
           navigation.navigate('AddContact', {
-            contactId: ramdomId,
+            contactId: randomId,
             addorEdit: true,
           })
         }>

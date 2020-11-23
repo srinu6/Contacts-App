@@ -6,15 +6,15 @@ import IconEntypo from 'react-native-vector-icons/Entypo';
 import {useDispatch} from 'react-redux';
 import {deleteContact} from '../actions/contactAction';
 import {useNavigation} from '@react-navigation/native';
-import {deletePopup} from '../constant/type';
+import {DELETE_POPUP} from '../constant/type';
 
 const Contact = ({contact}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {firstname, lastname, phone, id, image} = contact;
-  const avatarName = firstname.concat(' ').concat(lastname);
+  const {firstName, lastName, phone, id, image} = contact;
+  const avatarName = firstName.concat(' ').concat(lastName);
   const deleting = () => {
-    Alert.alert('DELETING!', deletePopup, [
+    Alert.alert('DELETING!', DELETE_POPUP, [
       {text: 'YES', onPress: () => dispatch(deleteContact(id))},
       {text: 'NO'},
     ]);
@@ -35,7 +35,7 @@ const Contact = ({contact}) => {
           <Left>{avatarImage}</Left>
           <Body style={styles.bodyStyle}>
             <Text style={styles.textStyle}>
-              {firstname} {lastname}
+              {firstName} {lastName}
             </Text>
             <Text style={styles.textColor}>{phone}</Text>
           </Body>

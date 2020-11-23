@@ -19,14 +19,13 @@ import {
   isValidName,
   isValidPhoneNumber,
   isValidEmail,
-} from '../util/validations';
+} from '../utils/validations';
 import {
-  firstNameError,
-  lastNameError,
-  emailError,
-  phoneNumberError,
-  correctInformation,
-  contactAdded,
+  FIRST_NAME_ERROR,
+  LAST_NAME_ERROR,
+  EMAIL_ERROR,
+  PHONE_NUMBER_ERROR,
+  CONTACT_ADDED,
 } from '../constant/type';
 
 function AddContact({route, navigation}) {
@@ -35,8 +34,8 @@ function AddContact({route, navigation}) {
     addorEdit === false ? useSelector((state) => state.contact.contact) : null;
   const contacts = useSelector((state) => state.contact.contacts);
   const dispatch = useDispatch();
-  const [firstname, setFirstName] = useState('');
-  const [lastname, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [image, setImage] = useState(null);
@@ -44,8 +43,8 @@ function AddContact({route, navigation}) {
   if (!addorEdit) {
     useEffect(() => {
       if (contact !== null && contact !== undefined) {
-        setFirstName(contact.firstname);
-        setLastName(contact.lastname);
+        setFirstName(contact.firstName);
+        setLastName(contact.lastName);
         setPhone(contact.phone);
         setEmail(contact.email);
         setImage(contact.image);
@@ -58,15 +57,15 @@ function AddContact({route, navigation}) {
     event.preventDefault();
     const update_contact = Object.assign(contacts, {
       id: contactId,
-      firstname: firstname,
-      lastname: lastname,
+      firstName: firstName,
+      lastName: lastName,
       phone: phone,
       email: email,
       image: image,
     });
     const validEmailCheck = isValidEmail(email);
-    const validFirstNameCheck = isValidName(firstname);
-    const validLastNameCheck = isValidName(lastname);
+    const validFirstNameCheck = isValidName(firstName);
+    const validLastNameCheck = isValidName(lastName);
     const validPhoneCheck = isValidPhoneNumber(phone);
 
     if (
@@ -80,25 +79,18 @@ function AddContact({route, navigation}) {
           ? addContact(update_contact)
           : updateContact(update_contact),
       );
-      Alert.alert('Yeah!', contactAdded, [{text: 'Ok'}]);
+      Alert.alert('Yeah!', CONTACT_ADDED, [{text: 'Ok'}]);
       navigation.navigate('Contacts');
-    } else if (
-      !validEmailCheck ||
-      !validFirstNameCheck ||
-      !validLastNameCheck ||
-      !validPhoneCheck
-    ) {
-      if (!validFirstNameCheck) {
-        Alert.alert('OOPS!', firstNameError);
-      } else if (!validLastNameCheck) {
-        Alert.alert('OOPS!', lastNameError);
-      } else if (!validPhoneCheck) {
-        Alert.alert('OOPS!', phoneNumberError);
-      } else if (!validEmailCheck) {
-        Alert.alert('OOPS!', emailError);
-      }
     } else {
-      Alert.alert('OOPS!', correctInformation, [{text: 'Okay'}]);
+      if (!validFirstNameCheck) {
+        Alert.alert('OOPS!', FIRST_NAME_ERROR);
+      } else if (!validLastNameCheck) {
+        Alert.alert('OOPS!', LAST_NAME_ERROR);
+      } else if (!validPhoneCheck) {
+        Alert.alert('OOPS!', PHONE_NUMBER_ERROR);
+      } else if (!validEmailCheck) {
+        Alert.alert('OOPS!', EMAIL_ERROR);
+      }
     }
   };
 
@@ -220,16 +212,16 @@ function AddContact({route, navigation}) {
               <TextInput
                 style={styles.nameTextInputStyle}
                 placeholder="First Name"
-                value={firstname}
+                value={firstName}
                 onChangeText={(text) => setFirstName(text)}
-                onBlur={() => isValidName(firstname)}
+                onBlur={() => isValidName(firstName)}
               />
               <TextInput
                 style={styles.nameTextInputStyle}
                 placeholder="Last Name"
-                value={lastname}
+                value={lastName}
                 onChangeText={(text) => setLastName(text)}
-                onBlur={() => isValidName(lastname)}
+                onBlur={() => isValidName(lastName)}
               />
             </View>
             <TextInput
