@@ -15,16 +15,16 @@ const ShowContact = ({route, navigation}) => {
   const {contactId} = route.params;
   const dispatch = useDispatch();
   const contact = useSelector((state) => state.contact.contact);
-  const [firstname, setFirstName] = useState('');
-  const [lastname, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [image, setImage] = useState(image);
 
   useEffect(() => {
     if (contact != null) {
-      setFirstName(contact.firstname);
-      setLastName(contact.lastname);
+      setFirstName(contact.firstName);
+      setLastName(contact.lastName);
       setPhone(contact.phone);
       setEmail(contact.email);
       setImage(contact.image);
@@ -51,7 +51,7 @@ const ShowContact = ({route, navigation}) => {
           <View style={styles.row}>
             <Icon name="account-box" color="#511e31" size={20} />
             <Text style={styles.detailsText}>
-              {firstname} {lastname}
+              {firstName} {lastName}
             </Text>
           </View>
           <View style={styles.row}>
