@@ -6,7 +6,6 @@ import {
   isValidPhoneNumber,
 } from '../utils/validations';
 
-// Note: test renderer must be required after react-native.
 // const valid= require('../utils/validations')
 test('Valid Email', () => {
   expect(isValidEmail('sri@gmail.com')).toBeTruthy();
@@ -20,8 +19,8 @@ test('Valid Email', () => {
 test('Valid Name', () => {
   expect(isValidName('sriMaripi')).toBeTruthy();
   expect(isValidName('sri4')).toBeFalsy();
-  // expect(isValidName(null)).toBeFalsy();
-  //expect(isValidName(undefined)).toBeFalsy();
+  expect(isValidEmail(null)).toBeFalsy();
+  expect(isValidEmail(undefined)).toBeFalsy();
 });
 
 test('Valid Phone number', () => {

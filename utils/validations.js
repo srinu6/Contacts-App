@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const isValidName = (name) => {
-  const regexName = /^[a-zA-Z_.-]+$/;
+  const regexName = /^[a-zA-Z_ .-]+$/;
   const nameCheck = regexName.test(name);
   if (!nameCheck) {
     return false;
