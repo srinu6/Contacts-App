@@ -99,7 +99,7 @@ function AddContact({route, navigation}) {
 
   const renderInner = () => (
     <View style={styles.panel}>
-      <View style={{alignItems: 'center'}}>
+      <View style={styles.panelHeader}>
         <Text style={styles.panelTitle}>Upload Photo</Text>
         <Text style={styles.panelSubtitle}>Choose a Picture</Text>
       </View>
@@ -191,7 +191,7 @@ function AddContact({route, navigation}) {
                     uri: image,
                   }}
                   style={styles.imageBackGround}
-                  imageStyle={{borderRadius: 45}}>
+                  imageStyle={styles.backGroundRadius}>
                   <View style={styles.photoIconView}>
                     <Icon
                       name="camera"
@@ -321,6 +321,9 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     backgroundColor: '#666b68',
+    borderRadius: 45,
+  },
+  backGroundRadius: {
     borderRadius: 45,
   },
   imageBackGroundView: {
