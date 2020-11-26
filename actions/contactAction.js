@@ -31,6 +31,3 @@ import {
     type: VIEW_CONTACT,
     payload: contact,
   });
-
-
-  
