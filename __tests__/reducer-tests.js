@@ -402,7 +402,7 @@ describe('contacts reducer', () => {
     ).toEqual(intialState);
   });
 
-  it('should return get a contact', () => {
+  it('should get a contact & total contacts', () => {
     const newState = {
       contact: {
         id: 5,
