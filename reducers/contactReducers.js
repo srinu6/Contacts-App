@@ -6,7 +6,7 @@ import {
   VIEW_CONTACT,
 } from '../constant/type';
 
-const intialState = {
+export const intialState = {
   contacts: [
     {
       id: 1,
