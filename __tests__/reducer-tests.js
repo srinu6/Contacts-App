@@ -403,7 +403,7 @@ describe('contacts reducer', () => {
   });
 
   it('should get a contact & total contacts', () => {
-    const newState = {
+    const combainedState = {
       contact: {
         id: 5,
         firstName: 'Thor',
@@ -532,6 +532,6 @@ describe('contacts reducer', () => {
         type: Types.GET_CONTACT,
         payload: 5,
       }),
-    ).toEqual(newState);
+    ).toEqual(combainedState);
   });
 });
