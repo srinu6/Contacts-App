@@ -5,7 +5,9 @@ describe('contacts reducer', () => {
   it('should return initial state', () => {
     expect(contactReducer(undefined, {})).toEqual(intialState);
   });
+});
 
+describe('contacts reducer', () => {
   it('should return state after deleting', () => {
     expect(
       contactReducer(undefined, {
@@ -121,7 +123,9 @@ describe('contacts reducer', () => {
       ],
     });
   });
+});
 
+describe('contacts reducer', () => {
   it('should return new state with added contact', () => {
     const contact = {
       id: 17,
@@ -261,6 +265,9 @@ describe('contacts reducer', () => {
       ],
     });
   });
+});
+
+describe('contacts reducer', () => {
   it('should return state after updating contact', () => {
     const updatedContact = {
       id: 1,
@@ -392,7 +399,9 @@ describe('contacts reducer', () => {
       ],
     });
   });
+});
 
+describe('contacts reducer', () => {
   it('should return contacts', () => {
     expect(
       contactReducer(undefined, {
@@ -401,7 +410,9 @@ describe('contacts reducer', () => {
       }),
     ).toEqual(intialState);
   });
+});
 
+describe('contacts reducer', () => {
   it('should get a contact & total contacts', () => {
     const combainedState = {
       contact: {
