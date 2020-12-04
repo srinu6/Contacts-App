@@ -55,14 +55,14 @@ function AddContact({route, navigation}) {
 
   const onUpdateContact = (event) => {
     event.preventDefault();
-    const update_contact = Object.assign(contacts, {
+    const update_contact = {
       id: contactId,
       firstName: firstName,
       lastName: lastName,
       phone: phone,
       email: email,
       image: image,
-    });
+    };
     const validEmailCheck = isValidEmail(email);
     const validFirstNameCheck = isValidName(firstName);
     const validLastNameCheck = isValidName(lastName);
