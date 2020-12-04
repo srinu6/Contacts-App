@@ -8,10 +8,10 @@ import Contact from './contacts';
 const Device = require('react-native-device-detection');
 
 function Contacts({navigation}) {
-  const randomId = Math.random();
   let differentPhoneStyle = null;
   let searchedContacts = null;
   const contacts = useSelector((state) => state.contact.contacts);
+  const randomId = contacts.length;
   const [search, setsearch] = useState('');
   if (search === '') {
     searchedContacts = contacts.map((contact) => (

@@ -7,7 +7,7 @@ describe('contacts reducer', () => {
   });
 });
 
-describe('contacts reducer', () => {
+describe('contacts reducer test for deleting contact', () => {
   it('should return state after deleting', () => {
     expect(
       contactReducer(undefined, {
@@ -17,7 +17,7 @@ describe('contacts reducer', () => {
     ).toEqual({
       contacts: [
         {
-          id: 1,
+          id: 0,
           firstName: 'Iron',
           lastName: 'Man',
           email: 'ironman@hero.com',
@@ -25,7 +25,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 2,
+          id: 1,
           firstName: 'Super',
           lastName: 'Man',
           email: 'superman@hero.com',
@@ -33,7 +33,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 5,
+          id: 2,
           firstName: 'Thor',
           lastName: 'God',
           email: 'Thor@hero.com',
@@ -41,15 +41,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 9,
-          firstName: 'Thanos',
-          lastName: 'Conqurer',
-          email: 'Thanos@powerfull.com',
-          phone: '5432145678',
-          image: null,
-        },
-        {
-          id: 7,
+          id: 4,
           firstName: 'Hulk',
           lastName: 'Blaster',
           email: 'Hulk@distory.com',
@@ -57,7 +49,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 8,
+          id: 5,
           firstName: 'Captain',
           lastName: 'America',
           email: 'cap@world.com',
@@ -65,7 +57,15 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 10,
+          id: 6,
+          firstName: 'Captain',
+          lastName: 'Marvel',
+          email: 'lady@hero.com',
+          phone: '7504932732',
+          image: null,
+        },
+        {
+          id: 7,
           firstName: 'Srinu',
           lastName: 'Haha',
           email: 'srinu@sri.com',
@@ -73,7 +73,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 11,
+          id: 8,
           firstName: 'Ant',
           lastName: 'Man',
           email: 'antman@hero.com',
@@ -81,7 +81,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 12,
+          id: 9,
           firstName: 'Spyder',
           lastName: 'Man',
           email: 'Spyderman@hero.com',
@@ -89,7 +89,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 13,
+          id: 10,
           firstName: 'Bahubali',
           lastName: 'Mahismati',
           email: 'ironman@hero.com',
@@ -97,7 +97,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 14,
+          id: 11,
           firstName: 'Bat',
           lastName: 'Man',
           email: 'Batman@hero.com',
@@ -105,7 +105,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 15,
+          id: 12,
           firstName: 'Iron',
           lastName: 'Fist',
           email: 'ironfist@hero.com',
@@ -113,7 +113,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 16,
+          id: 13,
           firstName: 'Krish',
           lastName: 'Local',
           email: 'Krish@hero.com',
@@ -125,10 +125,10 @@ describe('contacts reducer', () => {
   });
 });
 
-describe('contacts reducer', () => {
+describe('contacts reducer test for adding contact', () => {
   it('should return new state with added contact', () => {
     const contact = {
-      id: 17,
+      id: 14,
       firstName: 'Krishcreated',
       lastName: 'Localcreated',
       email: 'Krish@hero.comcreated',
@@ -143,7 +143,7 @@ describe('contacts reducer', () => {
     ).toEqual({
       contacts: [
         {
-          id: 17,
+          id: 14,
           firstName: 'Krishcreated',
           lastName: 'Localcreated',
           email: 'Krish@hero.comcreated',
@@ -151,7 +151,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 1,
+          id: 0,
           firstName: 'Iron',
           lastName: 'Man',
           email: 'ironman@hero.com',
@@ -159,7 +159,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 2,
+          id: 1,
           firstName: 'Super',
           lastName: 'Man',
           email: 'superman@hero.com',
@@ -167,7 +167,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 5,
+          id: 2,
           firstName: 'Thor',
           lastName: 'God',
           email: 'Thor@hero.com',
@@ -175,7 +175,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 9,
+          id: 3,
           firstName: 'Thanos',
           lastName: 'Conqurer',
           email: 'Thanos@powerfull.com',
@@ -183,7 +183,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 7,
+          id: 4,
           firstName: 'Hulk',
           lastName: 'Blaster',
           email: 'Hulk@distory.com',
@@ -191,7 +191,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 8,
+          id: 5,
           firstName: 'Captain',
           lastName: 'America',
           email: 'cap@world.com',
@@ -199,7 +199,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 3,
+          id: 6,
           firstName: 'Captain',
           lastName: 'Marvel',
           email: 'lady@hero.com',
@@ -207,7 +207,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 10,
+          id: 7,
           firstName: 'Srinu',
           lastName: 'Haha',
           email: 'srinu@sri.com',
@@ -215,7 +215,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 11,
+          id: 8,
           firstName: 'Ant',
           lastName: 'Man',
           email: 'antman@hero.com',
@@ -223,7 +223,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 12,
+          id: 9,
           firstName: 'Spyder',
           lastName: 'Man',
           email: 'Spyderman@hero.com',
@@ -231,7 +231,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 13,
+          id: 10,
           firstName: 'Bahubali',
           lastName: 'Mahismati',
           email: 'ironman@hero.com',
@@ -239,7 +239,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 14,
+          id: 11,
           firstName: 'Bat',
           lastName: 'Man',
           email: 'Batman@hero.com',
@@ -247,7 +247,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 15,
+          id: 12,
           firstName: 'Iron',
           lastName: 'Fist',
           email: 'ironfist@hero.com',
@@ -255,7 +255,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 16,
+          id: 13,
           firstName: 'Krish',
           lastName: 'Local',
           email: 'Krish@hero.com',
@@ -267,10 +267,10 @@ describe('contacts reducer', () => {
   });
 });
 
-describe('contacts reducer', () => {
+describe('contacts reducer test for updating contact', () => {
   it('should return state after updating contact', () => {
     const updatedContact = {
-      id: 1,
+      id: 0,
       firstName: 'Iron',
       lastName: 'Man Updated',
       email: 'ironman@hero.com',
@@ -285,7 +285,7 @@ describe('contacts reducer', () => {
     ).toEqual({
       contacts: [
         {
-          id: 1,
+          id: 0,
           firstName: 'Iron',
           lastName: 'Man Updated',
           email: 'ironman@hero.com',
@@ -293,7 +293,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 2,
+          id: 1,
           firstName: 'Super',
           lastName: 'Man',
           email: 'superman@hero.com',
@@ -301,7 +301,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 5,
+          id: 2,
           firstName: 'Thor',
           lastName: 'God',
           email: 'Thor@hero.com',
@@ -309,7 +309,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 9,
+          id: 3,
           firstName: 'Thanos',
           lastName: 'Conqurer',
           email: 'Thanos@powerfull.com',
@@ -317,7 +317,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 7,
+          id: 4,
           firstName: 'Hulk',
           lastName: 'Blaster',
           email: 'Hulk@distory.com',
@@ -325,7 +325,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 8,
+          id: 5,
           firstName: 'Captain',
           lastName: 'America',
           email: 'cap@world.com',
@@ -333,7 +333,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 3,
+          id: 6,
           firstName: 'Captain',
           lastName: 'Marvel',
           email: 'lady@hero.com',
@@ -341,7 +341,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 10,
+          id: 7,
           firstName: 'Srinu',
           lastName: 'Haha',
           email: 'srinu@sri.com',
@@ -349,7 +349,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 11,
+          id: 8,
           firstName: 'Ant',
           lastName: 'Man',
           email: 'antman@hero.com',
@@ -357,7 +357,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 12,
+          id: 9,
           firstName: 'Spyder',
           lastName: 'Man',
           email: 'Spyderman@hero.com',
@@ -365,7 +365,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 13,
+          id: 10,
           firstName: 'Bahubali',
           lastName: 'Mahismati',
           email: 'ironman@hero.com',
@@ -373,7 +373,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 14,
+          id: 11,
           firstName: 'Bat',
           lastName: 'Man',
           email: 'Batman@hero.com',
@@ -381,7 +381,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 15,
+          id: 12,
           firstName: 'Iron',
           lastName: 'Fist',
           email: 'ironfist@hero.com',
@@ -389,7 +389,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 16,
+          id: 13,
           firstName: 'Krish',
           lastName: 'Local',
           email: 'Krish@hero.com',
@@ -401,7 +401,7 @@ describe('contacts reducer', () => {
   });
 });
 
-describe('contacts reducer', () => {
+describe('contacts reducer test for viewing contact', () => {
   it('should return contacts', () => {
     expect(
       contactReducer(undefined, {
@@ -412,11 +412,11 @@ describe('contacts reducer', () => {
   });
 });
 
-describe('contacts reducer', () => {
+describe('contacts reducer for getting a particular contact', () => {
   it('should get a contact & total contacts', () => {
     const combainedState = {
       contact: {
-        id: 5,
+        id: 2,
         firstName: 'Thor',
         lastName: 'God',
         email: 'Thor@hero.com',
@@ -425,7 +425,7 @@ describe('contacts reducer', () => {
       },
       contacts: [
         {
-          id: 1,
+          id: 0,
           firstName: 'Iron',
           lastName: 'Man',
           email: 'ironman@hero.com',
@@ -433,7 +433,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 2,
+          id: 1,
           firstName: 'Super',
           lastName: 'Man',
           email: 'superman@hero.com',
@@ -441,7 +441,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 5,
+          id: 2,
           firstName: 'Thor',
           lastName: 'God',
           email: 'Thor@hero.com',
@@ -449,7 +449,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 9,
+          id: 3,
           firstName: 'Thanos',
           lastName: 'Conqurer',
           email: 'Thanos@powerfull.com',
@@ -457,7 +457,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 7,
+          id: 4,
           firstName: 'Hulk',
           lastName: 'Blaster',
           email: 'Hulk@distory.com',
@@ -465,7 +465,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 8,
+          id: 5,
           firstName: 'Captain',
           lastName: 'America',
           email: 'cap@world.com',
@@ -473,7 +473,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 3,
+          id: 6,
           firstName: 'Captain',
           lastName: 'Marvel',
           email: 'lady@hero.com',
@@ -481,7 +481,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 10,
+          id: 7,
           firstName: 'Srinu',
           lastName: 'Haha',
           email: 'srinu@sri.com',
@@ -489,7 +489,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 11,
+          id: 8,
           firstName: 'Ant',
           lastName: 'Man',
           email: 'antman@hero.com',
@@ -497,7 +497,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 12,
+          id: 9,
           firstName: 'Spyder',
           lastName: 'Man',
           email: 'Spyderman@hero.com',
@@ -505,7 +505,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 13,
+          id: 10,
           firstName: 'Bahubali',
           lastName: 'Mahismati',
           email: 'ironman@hero.com',
@@ -513,7 +513,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 14,
+          id: 11,
           firstName: 'Bat',
           lastName: 'Man',
           email: 'Batman@hero.com',
@@ -521,7 +521,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 15,
+          id: 12,
           firstName: 'Iron',
           lastName: 'Fist',
           email: 'ironfist@hero.com',
@@ -529,7 +529,7 @@ describe('contacts reducer', () => {
           image: null,
         },
         {
-          id: 16,
+          id: 13,
           firstName: 'Krish',
           lastName: 'Local',
           email: 'Krish@hero.com',
@@ -541,7 +541,7 @@ describe('contacts reducer', () => {
     expect(
       contactReducer(undefined, {
         type: Types.GET_CONTACT,
-        payload: 5,
+        payload: 2,
       }),
     ).toEqual(combainedState);
   });
