@@ -9,7 +9,7 @@ import {
 export const intialState = {
   contacts: [
     {
-      id: 0,
+      id: 13,
       firstName: 'Iron',
       lastName: 'Man',
       email: 'ironman@hero.com',
@@ -17,7 +17,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 1,
+      id: 12,
       firstName: 'Super',
       lastName: 'Man',
       email: 'superman@hero.com',
@@ -25,7 +25,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 2,
+      id: 11,
       firstName: 'Thor',
       lastName: 'God',
       email: 'Thor@hero.com',
@@ -33,7 +33,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 3,
+      id: 10,
       firstName: 'Thanos',
       lastName: 'Conqurer',
       email: 'Thanos@powerfull.com',
@@ -41,7 +41,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 4,
+      id: 9,
       firstName: 'Hulk',
       lastName: 'Blaster',
       email: 'Hulk@distory.com',
@@ -49,7 +49,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 5,
+      id: 8,
       firstName: 'Captain',
       lastName: 'America',
       email: 'cap@world.com',
@@ -57,7 +57,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 6,
+      id: 7,
       firstName: 'Captain',
       lastName: 'Marvel',
       email: 'lady@hero.com',
@@ -65,7 +65,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 7,
+      id: 6,
       firstName: 'Srinu',
       lastName: 'Haha',
       email: 'srinu@sri.com',
@@ -73,7 +73,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 8,
+      id: 5,
       firstName: 'Ant',
       lastName: 'Man',
       email: 'antman@hero.com',
@@ -81,7 +81,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 9,
+      id: 4,
       firstName: 'Spyder',
       lastName: 'Man',
       email: 'Spyderman@hero.com',
@@ -89,7 +89,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 10,
+      id: 3,
       firstName: 'Bahubali',
       lastName: 'Mahismati',
       email: 'ironman@hero.com',
@@ -97,7 +97,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 11,
+      id: 2,
       firstName: 'Bat',
       lastName: 'Man',
       email: 'Batman@hero.com',
@@ -105,7 +105,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 12,
+      id: 1,
       firstName: 'Iron',
       lastName: 'Fist',
       email: 'ironfist@hero.com',
@@ -113,7 +113,7 @@ export const intialState = {
       image: null,
     },
     {
-      id: 13,
+      id: 0,
       firstName: 'Krish',
       lastName: 'Local',
       email: 'Krish@hero.com',
@@ -122,6 +122,16 @@ export const intialState = {
     },
   ],
 };
+
+
+  // function deleteMyContact(state, action){
+  
+  //   const s1=state.contacts.slice(0, action.payload);
+  //   const s2=state.contacts.slice(action.payload+1, state.contacts.length);
+  //   return s1.concat(s2);
+  // }
+  
+
 
 export const contactReducer = (state = intialState, action) => {
   switch (action.type) {
