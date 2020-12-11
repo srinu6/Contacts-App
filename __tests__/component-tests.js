@@ -1,13 +1,21 @@
 import 'react-native';
 import React from 'react';
-// import { render, fireEvent, screen } from '@testing-library/react';
+//import { render, fireEvent, screen } from '@testing-library/react';
 import AddEditContact from '../components/addEditContacts';
 import renderer from 'react-test-renderer';
 //import {useNavigation} from '@react-navigation/native';
 //import {navigationProps} from 'testing';
+
+import { useSelector, useDispatch } from 'react-redux'; 
+
+const mockDispatch = jest.fn();
+jest.mock('react-redux', () => ({
+  useSelector: jest.fn(),
+  useDispatch: () => mockDispatch
+}));
+jest.mock('reanimated-bottom-sheet');
 jest.mock('react-native-reanimated', () => {
   const View = require('react-native').View;
-
   return {
     Value: jest.fn(),
     event: jest.fn(),
@@ -16,6 +24,7 @@ jest.mock('react-native-reanimated', () => {
     set: jest.fn(),
     cond: jest.fn(),
     interpolate: jest.fn(),
+    multiply: jest.fn(),
     View: View,
     Extrapolate: {CLAMP: jest.fn()},
     Transition: {
@@ -25,17 +34,31 @@ jest.mock('react-native-reanimated', () => {
     },
   };
 });
+
+
 const navigation = {navigate: jest.fn()};
 // navigation={navigation.navigate('AddContact', {
 //   contactId: 5,
 //   addorEdit: false,
 // })}
 
-describe('should call Add Contact or edit contact', () => {
+const route = {
+  params:{
+    contactId: 14,
+    addorEdit: true,
+  }
+}
+
+describe('should call Add Contact or edit contact',()=>{
   it('should call Add Contact', () => {
     let addEdit = renderer
-      .create(<AddEditContact navigation={navigation} />)
+      .create(
+        <AddEditContact
+          route={route}
+        />,
+      )
       .getInstance();
     expect(addEdit.onUpdateContact().validEmailCheck).toBeTruthy();
   });
-});
+  
+})
