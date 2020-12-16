@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import Details from '../components/contactDetails';
+import ContactDetails from '../components/contactDetails';
 import renderer from 'react-test-renderer';
 import { useSelector, useDispatch } from 'react-redux'; 
 const mockDispatch = jest.fn();
@@ -30,24 +30,24 @@ jest.mock('react-native-reanimated', () => {
   };
 });
 
-
 const navigation = {navigate: jest.fn()};
 const route = {
     params:{
       contactId: 1,
     }
-  }
+}
   
-  describe('should call Add Contact or edit contact',()=>{
-    it('should call Add Contact', () => {
-      let addEdit = renderer.create(
-          <Details
+  describe('This will check contacts details screen',()=>{
+    it('<ContactDetails />', () => {
+      const wrapper = renderer.create(
+          <ContactDetails
             route={route}
             navigation={navigation}
-          />,
+          />
         )
-        .getInstance();
-        console.log(addEdit, 'components inners')
+        .toJSON();
+        console.log(wrapper, 'components inners')
+        console.log(wrapper.children[1].children[0].children[1].children[1], 'contact details')
       //expect(addEdit.onUpdateContact().validEmailCheck).toBeTruthy();
     });
     
