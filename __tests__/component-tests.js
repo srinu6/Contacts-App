@@ -1,13 +1,20 @@
+/**
+ * @jest-environment jsdom
+*/
+
 import 'react-native';
 import React from 'react';
+import ReactDOM from 'react-dom';
 //import { render, fireEvent, screen } from '@testing-library/react';
 import AddEditContact from '../components/addEditContacts';
 import renderer from 'react-test-renderer';
 //import {useNavigation} from '@react-navigation/native';
 //import {navigationProps} from 'testing';
-
+import Enzyme, { shallow, render, mount } from 'enzyme';
 import { useSelector, useDispatch } from 'react-redux'; 
-
+//import { shallow } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+Enzyme.configure({ adapter: new Adapter() })
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
@@ -35,8 +42,8 @@ jest.mock('react-native-reanimated', () => {
   };
 });
 
-
 const navigation = {navigate: jest.fn()};
+
 // navigation={navigation.navigate('AddContact', {
 //   contactId: 5,
 //   addorEdit: false,
@@ -51,14 +58,19 @@ const route = {
 
 describe('should call Add Contact or edit contact',()=>{
   it('should call Add Contact', () => {
-    let addEdit = renderer
-      .create(
+    const wrapper = renderer.create(
         <AddEditContact
           route={route}
-        />,
-      )
-      .getInstance();
-    expect(addEdit.onUpdateContact().validEmailCheck).toBeTruthy();
-  });
-  
+          navigation={navigation}
+        />
+      ).toJSON();
+      //const inst = wrapper.getInstance();
+      console.log(wrapper, 'component')
+      //console.log(wrapper.type, 'type')
+      console.log(wrapper.props, 'props')
+      console.log(wrapper.children, 'children')
+      console.log(wrapper.children.children, 'children in children')
+      console.log(wrapper.children.props, 'props in children')
+  //  expect(addEdit.onUpdateContact().validEmailCheck).toBeTruthy();
+  });  
 })

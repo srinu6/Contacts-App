@@ -45,17 +45,24 @@
     "@babel/runtime": "7.12.1",
     "@react-native-community/eslint-config": "1.1.0",
     "@testing-library/jest-dom": "5.11.6",
+    "@testing-library/jest-native": "3.4.3",
     "@testing-library/react": "11.2.2",
+    "@testing-library/react-native": "7.1.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "0.3.2",
     "babel-jest": "25.5.1",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.5",
     "eslint": "6.8.0",
     "jest": "25.5.4",
     "metro-react-native-babel-preset": "0.59.0",
+    "react-dom": "17.0.1",
     "react-test-renderer": "16.13.1"
   },
   "jest": {
     "preset": "react-native",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ],
     "setupFiles": [
       "./node_modules/react-native-gesture-handler/jestSetup.js",
       "./node_modules/jest/setup.js"
