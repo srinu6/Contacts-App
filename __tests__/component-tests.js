@@ -68,9 +68,17 @@ describe('should call Add Contact or edit contact',()=>{
       console.log(wrapper, 'component')
       //console.log(wrapper.type, 'type')
       console.log(wrapper.props, 'props')
-      console.log(wrapper.children, 'children')
-      console.log(wrapper.children.children, 'children in children')
-      console.log(wrapper.children.props, 'props in children')
+      //console.log(wrapper.children, 'children')
+      console.log(wrapper.children[0], 'Animated view')
+      console.log(wrapper.children[0].children[0], 'Scrollview')
+      console.log(wrapper.children[0].children[0].children[0], 'inside scrollview')
+      console.log(wrapper.children[0].children[0].children[0].children[0], 'title')
+      console.log(wrapper.children[0].children[0].children[0].children[1], 'contacts photo')
+      console.log(wrapper.children[0].children[0].children[0].children[2], 'testinputs fields')
+      console.log(wrapper.children[0].children[0].children[0].children[2].children[0], 'firstname and lastname')
+      console.log(wrapper.children[0].children[0].children[0].children[2].children[0].children[0], 'First name')
+      console.log(wrapper.children[0].children[0].children[0].children[2].children[1], 'phonenumber')
+
   //  expect(addEdit.onUpdateContact().validEmailCheck).toBeTruthy();
   });  
 })
