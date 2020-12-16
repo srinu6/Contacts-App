@@ -29,15 +29,9 @@ import {
 } from '../constant/type';
 
 function AddContact({route, navigation}) {
-  console.log('route', route);
-  console.log('navigation', navigation);
   const {contactId, addorEdit} = route.params;
-  console.log(route);
-  console.log(route.params);
-  console.log(contactId);
   const contact =
     addorEdit === false ? useSelector((state) => state.contact.contact) : null;
-  //const contacts = useSelector((state) => state.contact.contacts);
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
