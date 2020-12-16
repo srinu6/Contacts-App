@@ -1,24 +1,11 @@
-/**
- * @jest-environment jsdom
-*/
-
 import 'react-native';
 import React from 'react';
-import ReactDOM from 'react-dom';
-//import { render, fireEvent, screen } from '@testing-library/react';
 import AddEditContact from '../components/addEditContacts';
 import renderer from 'react-test-renderer';
-//import {useNavigation} from '@react-navigation/native';
-//import {navigationProps} from 'testing';
-import Enzyme, { shallow, render, mount } from 'enzyme';
-import { useSelector, useDispatch } from 'react-redux'; 
-//import { shallow } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-Enzyme.configure({ adapter: new Adapter() })
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
-  useDispatch: () => mockDispatch
+  useDispatch: () => mockDispatch,
 }));
 jest.mock('reanimated-bottom-sheet');
 jest.mock('react-native-reanimated', () => {
@@ -41,44 +28,107 @@ jest.mock('react-native-reanimated', () => {
     },
   };
 });
-
 const navigation = {navigate: jest.fn()};
 
-// navigation={navigation.navigate('AddContact', {
-//   contactId: 5,
-//   addorEdit: false,
-// })}
-
-const route = {
-  params:{
+const routeForAddContact = {
+  params: {
     contactId: 14,
     addorEdit: true,
-  }
-}
+  },
+};
 
-describe('should call Add Contact or edit contact',()=>{
-  it('should call Add Contact', () => {
-    const wrapper = renderer.create(
-        <AddEditContact
-          route={route}
-          navigation={navigation}
-        />
-      ).toJSON();
-      //const inst = wrapper.getInstance();
-      console.log(wrapper, 'component')
-      //console.log(wrapper.type, 'type')
-      console.log(wrapper.props, 'props')
-      //console.log(wrapper.children, 'children')
-      console.log(wrapper.children[0], 'Animated view')
-      console.log(wrapper.children[0].children[0], 'Scrollview')
-      console.log(wrapper.children[0].children[0].children[0], 'inside scrollview')
-      console.log(wrapper.children[0].children[0].children[0].children[0], 'title')
-      console.log(wrapper.children[0].children[0].children[0].children[1], 'contacts photo')
-      console.log(wrapper.children[0].children[0].children[0].children[2], 'testinputs fields')
-      console.log(wrapper.children[0].children[0].children[0].children[2].children[0], 'firstname and lastname')
-      console.log(wrapper.children[0].children[0].children[0].children[2].children[0].children[0], 'First name')
-      console.log(wrapper.children[0].children[0].children[0].children[2].children[1], 'phonenumber')
+const routeForEditContact = {
+  params: {
+    contactId: 1,
+    addorEdit: false,
+  },
+};
+describe('Should call Add Contact', () => {
+  const wrapper = renderer
+    .create(
+      <AddEditContact route={routeForAddContact} navigation={navigation} />,
+    )
+    .toJSON();
+  console.log(wrapper, 'component');
+  console.log(wrapper.children[0], 'Animated view');
+  console.log(wrapper.children[0].children[0], 'Scrollview');
+  console.log(wrapper.children[0].children[0].children[0], 'Inside Scrollview');
+  console.log(wrapper.children[0].children[0].children[0].children[0], 'Title');
+  console.log(
+    wrapper.children[0].children[0].children[0].children[1],
+    'Contacts Photo',
+  );
+  console.log(
+    wrapper.children[0].children[0].children[0].children[2],
+    'Testinput fields',
+  );
+  console.log(
+    wrapper.children[0].children[0].children[0].children[2].children[0],
+    'Firstname and Lastname',
+  );
+  console.log(
+    wrapper.children[0].children[0].children[0].children[2].children[0]
+      .children[0],
+    'First Name',
+  );
+  console.log(
+    wrapper.children[0].children[0].children[0].children[2].children[1].props
+      .value,
+    'Phone Number',
+  );
+  console.log(
+    wrapper.children[0].children[0].children[0].children[2].children[3]
+      .children[0],
+    'Create or Update Contact touchable opacity',
+  );
 
-  //  expect(addEdit.onUpdateContact().validEmailCheck).toBeTruthy();
-  });  
-})
+  it('Adding a Contact, this will check Create Contact', () => {
+    expect(
+      wrapper.children[0].children[0].children[0].children[2].children[3]
+        .children[0].children[0],
+    ).toBe('Create Contact');
+  });
+
+  it('Adding a Contact, this will check empty First Name field', () => {
+    expect(
+      wrapper.children[0].children[0].children[0].children[2].children[0]
+        .children[0].props.value,
+    ).toBe('');
+  });
+
+  it('Adding a Contact, this will check empty Last Name field', () => {
+    expect(
+      wrapper.children[0].children[0].children[0].children[2].children[0]
+        .children[1].props.value,
+    ).toBe('');
+  });
+
+  it('Adding a Contact, this will check empty phone number field', () => {
+    expect(
+      wrapper.children[0].children[0].children[0].children[2].children[1].props
+        .value,
+    ).toBe('');
+  });
+
+  it('Adding a Contact, this will check empty Email ID field', () => {
+    expect(
+      wrapper.children[0].children[0].children[0].children[2].children[2].props
+        .value,
+    ).toBe('');
+  });
+});
+
+describe('Should call Edit Contact', () => {
+  const wrapper = renderer
+    .create(
+      <AddEditContact route={routeForEditContact} navigation={navigation} />,
+    )
+    .toJSON();
+
+  it('Adding a Contact, this will check Create Contact', () => {
+    expect(
+      wrapper.children[0].children[0].children[0].children[2].children[3]
+        .children[0].children[0],
+    ).toBe('Update Contact');
+  });
+});
