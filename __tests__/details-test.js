@@ -3,6 +3,11 @@ import React from 'react';
 import ContactDetails from '../components/contactDetails';
 import renderer from 'react-test-renderer';
 import { useSelector, useDispatch } from 'react-redux'; 
+import configureMockStore from 'redux-mock-store'
+import {Provider} from 'react-redux/src'
+// const mockStore = configureMockStore()
+// const store = mockStore({})
+import store from '../store'
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
@@ -40,10 +45,12 @@ const route = {
   describe('This will check contacts details screen',()=>{
     it('<ContactDetails />', () => {
       const wrapper = renderer.create(
+        <Provider store={store}>
           <ContactDetails
             route={route}
             navigation={navigation}
           />
+          </Provider>
         )
         .toJSON();
         console.log(wrapper, 'components inners')
