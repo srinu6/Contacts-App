@@ -121,6 +121,7 @@ export const intialState = {
       image: null,
     },
   ],
+  contact:[],
 };
 
 
