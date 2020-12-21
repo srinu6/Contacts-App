@@ -1,16 +1,19 @@
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Header, Item, Input, Icon, List, Text, Button} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
 import {useSelector} from 'react-redux';
 import Contact from './contacts';
 const Device = require('react-native-device-detection');
 
-function Contacts({navigation}) {
+function Contacts({navigation, store}) {
   let differentPhoneStyle = null;
   let searchedContacts = null;
-  const contacts = useSelector((state) => state.contactStore.contacts);
+  const contacts =
+    store == null
+      ? useSelector((state) => state.contactStore.contacts)
+      : store.getState().contactStore.contacts;
   const randomId = contacts.length;
   const [search, setsearch] = useState('');
   if (search === '') {
@@ -82,7 +85,9 @@ function Contacts({navigation}) {
       <ScrollView>
         <List>{searchedContacts}</List>
       </ScrollView>
-      {differentPhoneStyle}
+      <View>
+        {differentPhoneStyle}
+      </View>
     </>
   );
 }
