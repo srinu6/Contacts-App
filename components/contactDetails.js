@@ -11,12 +11,14 @@ import {
 } from 'react-native';
 import Communications from 'react-native-communications';
 
-const ShowContact = ({route, navigation}) => {
+const ShowContact = ({route, navigation, store}) => {
   const {contactId} = route.params;
-  //console.log(useSelector((store) => store), 'printing store');
   const dispatch = useDispatch();
-  const contact = useSelector((state) => state.contactStore.contact);
-  console.log(contact, 'contact state')
+  const contact =
+    store == null
+      ? useSelector((state) => state.contactStore.contact)
+      : store.getState().contactStore.contact[contactId];
+  console.log(contact, 'contact state');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -33,7 +35,7 @@ const ShowContact = ({route, navigation}) => {
     }
     dispatch(getContact(contactId));
   }, [contact]);
-console.log(firstName,' name')
+
   return (
     <View style={styles.topView}>
       <View style={styles.bottonSheetCenter}>
