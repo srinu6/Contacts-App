@@ -14,7 +14,7 @@ function Contacts({navigation, store}) {
     store == null
       ? useSelector((state) => state.contactStore.contacts)
       : store.getState().contactStore.contacts;
-  const randomId = contacts.length;
+  const randomId = Math.random();
   const [search, setsearch] = useState('');
   if (search === '') {
     searchedContacts = contacts.map((contact) => (

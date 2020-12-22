@@ -2,6 +2,9 @@ import 'react-native';
 import React from 'react';
 import AddEditContact from '../components/addEditContacts';
 import renderer from 'react-test-renderer';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import {mount} from 'enzyme';
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
@@ -29,86 +32,200 @@ jest.mock('react-native-reanimated', () => {
   };
 });
 const navigation = {navigate: jest.fn()};
-
 const routeForAddContact = {
   params: {
-    contactId: 14,
+    contactId: 1,
     addorEdit: true,
   },
 };
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
+const store = mockStore({
+  contactStore: {
+    contact: [
+      {
+        id: 0,
+        firstName: 'Iron',
+        lastName: 'Man',
+        email: 'ironman@hero.com',
+        phone: '9848022335',
+        image: null,
+      },
+      {
+        id: 1,
+        firstName: 'Super',
+        lastName: 'Man',
+        email: 'superman@hero.com',
+        phone: '9876543234',
+        image: null,
+      },
+      {
+        id: 2,
+        firstName: 'Thor',
+        lastName: 'God',
+        email: 'Thor@hero.com',
+        phone: '1234567898',
+        image: null,
+      },
+      {
+        id: 3,
+        firstName: 'Thanos',
+        lastName: 'Conqurer',
+        email: 'Thanos@powerfull.com',
+        phone: '5432145678',
+        image: null,
+      },
+    ],
+  },
+});
 
-describe('Should call Add Contact', () => {
-  const wrapper = renderer
+const wrapper = mount(
+  <AddEditContact
+    route={routeForAddContact}
+    navigation={navigation}
+    store={store}
+  />,
+);
+
+const wrap = renderer
     .create(
       <AddEditContact route={routeForAddContact} navigation={navigation} />,
     )
     .toJSON();
-  console.log(wrapper, 'component');
-  console.log(wrapper.children[0], 'Animated view');
-  console.log(wrapper.children[0].children[0], 'Scrollview');
-  console.log(wrapper.children[0].children[0].children[0], 'Inside Scrollview');
-  console.log(wrapper.children[0].children[0].children[0].children[0], 'Title');
-  console.log(
-    wrapper.children[0].children[0].children[0].children[1],
-    'Contacts Photo',
-  );
-  console.log(
-    wrapper.children[0].children[0].children[0].children[2],
-    'Testinput fields',
-  );
-  console.log(
-    wrapper.children[0].children[0].children[0].children[2].children[0],
-    'Firstname and Lastname',
-  );
-  console.log(
-    wrapper.children[0].children[0].children[0].children[2].children[0]
-      .children[0],
-    'First Name',
-  );
-  console.log(
-    wrapper.children[0].children[0].children[0].children[2].children[1].props
-      .value,
-    'Phone Number',
-  );
-  console.log(
-    wrapper.children[0].children[0].children[0].children[2].children[3]
-      .children[0],
-    'Create or Update Contact touchable opacity',
-  );
+
+describe('Should call Add Contact', () => {
+  
+  // console.log(wrapper, 'component');
+  // console.log(wrapper.children[0], 'Animated view');
+  // console.log(wrapper.children[0].children[0], 'Scrollview');
+  // console.log(wrapper.children[0].children[0].children[0], 'Inside Scrollview');
+  // console.log(wrapper.children[0].children[0].children[0].children[0], 'Title');
+  // console.log(
+  //   wrapper.children[0].children[0].children[0].children[1],
+  //   'Contacts Photo',
+  // );
+  // console.log(
+  //   wrapper.children[0].children[0].children[0].children[2],
+  //   'Testinput fields',
+  // );
+  // console.log(
+  //   wrapper.children[0].children[0].children[0].children[2].children[0],
+  //   'Firstname and Lastname',
+  // );
+  // console.log(
+  //   wrapper.children[0].children[0].children[0].children[2].children[0]
+  //     .children[0],
+  //   'First Name',
+  // );
+  // console.log(
+  //   wrapper.children[0].children[0].children[0].children[2].children[1].props
+  //     .value,
+  //   'Phone Number',
+  // );
+  // console.log(
+  //   wrapper.children[0].children[0].children[0].children[2].children[3]
+  //     .children[0],
+  //   'Create or Update Contact touchable opacity',
+  // );
+
 
   it('Adding a Contact, this will check Create Contact', () => {
     expect(
-      wrapper.children[0].children[0].children[0].children[2].children[3]
+      wrap.children[0].children[0].children[0].children[2].children[3]
         .children[0].children[0],
     ).toBe('Create Contact');
   });
 
   it('Adding a Contact, this will check empty First Name field', () => {
-    expect(
-      wrapper.children[0].children[0].children[0].children[2].children[0]
-        .children[0].props.value,
-    ).toBe('');
+    const firstName = renderer
+      .create(
+        wrapper
+          .childAt(0)
+          .childAt(0)
+          .childAt(1)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(2)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0),
+      )
+      .toJSON().props.value;
+      expect(firstName).toBe("")
   });
 
   it('Adding a Contact, this will check empty Last Name field', () => {
-    expect(
-      wrapper.children[0].children[0].children[0].children[2].children[0]
-        .children[1].props.value,
-    ).toBe('');
+    const lastName = renderer
+    .create(
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .childAt(1)
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .childAt(2)
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .childAt(1)
+        .childAt(0),
+    )
+    .toJSON().props.value;
+    expect(lastName).toBe("")
   });
 
   it('Adding a Contact, this will check empty phone number field', () => {
-    expect(
-      wrapper.children[0].children[0].children[0].children[2].children[1].props
-        .value,
-    ).toBe('');
+    const phoneNumber = renderer
+    .create(
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .childAt(1)
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .childAt(2)
+        .childAt(0)
+        .childAt(1)
+        .childAt(0),
+    )
+    .toJSON().props.value;
+  expect(phoneNumber).toBe('');
   });
 
   it('Adding a Contact, this will check empty Email ID field', () => {
-    expect(
-      wrapper.children[0].children[0].children[0].children[2].children[2].props
-        .value,
-    ).toBe('');
+    const emailID = renderer
+      .create(
+        wrapper
+          .childAt(0)
+          .childAt(0)
+          .childAt(1)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .childAt(2)
+          .childAt(0)
+          .childAt(2)
+          .childAt(0),
+      )
+      .toJSON().props.value;
+    expect(emailID).toBe('');
   });
 });
 
