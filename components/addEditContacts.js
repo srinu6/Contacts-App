@@ -31,8 +31,11 @@ import {
 function AddContact({route, navigation, store}) {
   const {contactId, addorEdit} = route.params;
   let contact =
-    addorEdit === false ? useSelector((state) => state.contactStore.contact) : null;
-  contact = store == null ? contact: store.getState().contactStore.contact[contactId]
+    addorEdit === false
+      ? useSelector((state) => state.contactStore.contact)
+      : null;
+  contact =
+    store == null ? contact : store.getState().contactStore.contact[contactId];
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

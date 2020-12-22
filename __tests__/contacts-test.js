@@ -16,6 +16,7 @@ const contact = {
   image: null,
 };
 const wrapper = renderer.create(<Contact contact={contact} />).toJSON();
+
 describe('<Contact />', () => {
   it('Checking contacts name', () => {
     const firstName =
