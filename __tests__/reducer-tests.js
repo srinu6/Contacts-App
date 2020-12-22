@@ -121,6 +121,7 @@ describe('contacts reducer test for deleting contact', () => {
           image: null,
         },
       ],
+      contact: [],
     });
   });
 });
@@ -263,6 +264,7 @@ describe('contacts reducer test for adding contact', () => {
           image: null,
         },
       ],
+      contact: [],
     });
   });
 });
@@ -397,6 +399,7 @@ describe('contacts reducer test for updating contact', () => {
           image: null,
         },
       ],
+      contact: [],
     });
   });
 });
