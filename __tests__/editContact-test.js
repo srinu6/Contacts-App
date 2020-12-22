@@ -144,7 +144,8 @@ describe('Should call Edit Contact', () => {
             .childAt(0)
             .childAt(0),
         )
-        .toJSON().props.value,"name"
+        .toJSON().props.value,
+      'name',
     );
     const firstName = renderer
       .create(
