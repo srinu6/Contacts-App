@@ -144,7 +144,7 @@ describe('Should call Edit Contact', () => {
             .childAt(0)
             .childAt(0),
         )
-        .toJSON().props.value,
+        .toJSON().props.value,"name"
     );
     const firstName = renderer
       .create(
@@ -209,7 +209,7 @@ describe('Should call Edit Contact', () => {
         .childAt(1)
         .childAt(0)
         .debug(),
-      'component',
+      'Phone number',
     );
     const phoneNumber = renderer
       .create(
@@ -251,7 +251,7 @@ describe('Should call Edit Contact', () => {
         .childAt(2)
         .childAt(0)
         .debug(),
-      'component',
+      'Email id',
     );
     const emailID = renderer
       .create(
