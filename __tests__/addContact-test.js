@@ -37,12 +37,6 @@ const routeForAddContact = {
   },
 };
 
-const routeForEditContact = {
-  params: {
-    contactId: 1,
-    addorEdit: false,
-  },
-};
 describe('Should call Add Contact', () => {
   const wrapper = renderer
     .create(
@@ -118,17 +112,3 @@ describe('Should call Add Contact', () => {
   });
 });
 
-describe('Should call Edit Contact', () => {
-  const wrapper = renderer
-    .create(
-      <AddEditContact route={routeForEditContact} navigation={navigation} />,
-    )
-    .toJSON();
-
-  it('Adding a Contact, this will check Create Contact', () => {
-    expect(
-      wrapper.children[0].children[0].children[0].children[2].children[3]
-        .children[0].children[0],
-    ).toBe('Update Contact');
-  });
-});
