@@ -5,12 +5,19 @@ import renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {mount} from 'enzyme';
+import {render, fireEvent} from 'react-native-testing-library';
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
   useDispatch: () => mockDispatch,
 }));
-jest.mock('reanimated-bottom-sheet');
+
+const renderInner=jest.fn();
+const renderHeader=jest.fn();
+jest.mock('reanimated-bottom-sheet', ()=>({
+  renderContent: () => renderInner,
+  renderHeader: () => renderHeader,
+}));
 jest.mock('react-native-reanimated', () => {
   const View = require('react-native').View;
   return {
@@ -101,6 +108,50 @@ describe('Should call Edit Contact', () => {
     ).toBe('Update Contact');
   });
 });
+
+
+describe('Should call Edit Contact', () => {
+  it('change input First Name, Last Name, Phone Number, EmailID', () => {
+    const {getByTestId} = render(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+
+    fireEvent.changeText(getByTestId('firstName'), 'Srinu');
+    expect(getByTestId('firstName').props.value).toEqual('Srinu');
+
+    fireEvent.changeText(getByTestId('lastName'), 'Maripi');
+    expect(getByTestId('lastName').props.value).toEqual('Maripi');
+
+    fireEvent.changeText(getByTestId('phoneNumber'), '0123456789');
+    expect(getByTestId('phoneNumber').props.value).toEqual('0123456789');
+
+    fireEvent.changeText(getByTestId('emailId'), 'srinu@gmail.com');
+    expect(getByTestId('emailId').props.value).toEqual('srinu@gmail.com');
+  });
+});
+
+describe('Checks different TouchableOpacities', () =>{
+  it('touchable opacity', () => {
+
+    const componentTouch = render(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+    const touchableSubmit = componentTouch.getByTestId('submit');
+    fireEvent.press(touchableSubmit);
+
+    const touchableNavigation = componentTouch.getByTestId('navigation');
+    fireEvent.press(touchableNavigation);
+
+})
+})
 
 describe('Should call Edit Contact', () => {
   it('this will check name field in Edit Contact', () => {
@@ -273,5 +324,22 @@ describe('Should call Edit Contact', () => {
       )
       .toJSON().props.value;
     expect(emailID).toBe('superman@hero.com');
+  });
+});
+
+describe('Should call Edit Contact', () => {
+  it('onBlur First Name, Last Name, Phone Number, EmailID', () => {
+    const {getByTestId} = render(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+
+    fireEvent(getByTestId('firstName'), 'blur');
+    fireEvent(getByTestId('lastName'), 'blur');
+    fireEvent(getByTestId('phoneNumber'), 'blur');
+    fireEvent(getByTestId('emailId'), 'blur');
   });
 });

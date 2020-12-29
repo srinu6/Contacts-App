@@ -4,7 +4,7 @@ import AddEditContact from '../components/addEditContacts';
 import renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {mount} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
@@ -87,6 +87,14 @@ const wrapper = mount(
   />,
 );
 
+const wrapShallow = shallow(
+  <AddEditContact
+    route={routeForAddContact}
+    navigation={navigation}
+    store={store}
+  />,
+);
+
 const wrap = renderer
   .create(<AddEditContact route={routeForAddContact} navigation={navigation} />)
   .toJSON();
@@ -123,6 +131,12 @@ const wrap = renderer
 //     .children[0],
 //   'Create or Update Contact touchable opacity',
 // );
+
+describe("Search component", () => {
+  test("renders", () => {
+    expect(wrapShallow.exists()).toBe(true);
+  });
+});
 
 describe('Should call Add Contact for checking Create Contact', () => {
   it('Adding a Contact, this will check Create Contact', () => {

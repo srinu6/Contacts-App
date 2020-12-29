@@ -39,6 +39,7 @@ function Contacts({navigation, store}) {
         <Item>
           <Icon name="ios-search" />
           <Input
+            testID='searchinput'
             placeholder="Search"
             value={search}
             onChangeText={(text) => setsearch(text)}
@@ -55,6 +56,7 @@ function Contacts({navigation, store}) {
   if (Device.isIphoneX) {
     differentPhoneStyle = (
       <TouchableOpacity
+        testID='iphonex'
         style={styles.foriphoneX}
         onPress={() =>
           navigation.navigate('AddContact', {
@@ -68,6 +70,7 @@ function Contacts({navigation, store}) {
   } else {
     differentPhoneStyle = (
       <TouchableOpacity
+        testID='otherphone'
         style={styles.othenThanIphoneX}
         onPress={() =>
           navigation.navigate('AddContact', {
