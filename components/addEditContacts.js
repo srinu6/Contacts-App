@@ -56,8 +56,8 @@ function AddContact({route, navigation, store}) {
     }, [contact]);
   }
 
-  const onUpdateContact = (event) => {
-    event.preventDefault();
+  const onUpdateContact = () => {
+   // event.preventDefault();
     const update_contact = {
       id: contactId,
       firstName: firstName,
@@ -157,7 +157,7 @@ function AddContact({route, navigation, store}) {
   const Title = () => {
     return (
       <View style={styles.headingView}>
-        <TouchableOpacity onPress={() => navigation.navigate('Contacts')}>
+        <TouchableOpacity testID='navigation' onPress={() => navigation.navigate('Contacts')}>
           <Icon name="arrow-left" size={30} />
         </TouchableOpacity>
         <Text style={styles.headingText}>
@@ -170,6 +170,7 @@ function AddContact({route, navigation, store}) {
   return (
     <View style={styles.viewFlex}>
       <BottomSheet
+        testID='bottomSheet'
         ref={bottomsheet}
         snapPoints={[330, 0]}
         renderContent={renderInner}
@@ -187,7 +188,7 @@ function AddContact({route, navigation, store}) {
           <Title />
 
           <View style={styles.bottonSheetCenter}>
-            <TouchableOpacity onPress={() => bottomsheet.current.snapTo(0)}>
+            <TouchableOpacity testID='bottomsheetsnaps' onPress={() => bottomsheet.current.snapTo(0)}>
               <View style={styles.imageBackGroundView}>
                 <ImageBackground
                   source={{
@@ -213,6 +214,7 @@ function AddContact({route, navigation, store}) {
           <View>
             <View style={styles.fullNameRow}>
               <TextInput
+                testID="firstName"
                 style={styles.nameTextInputStyle}
                 placeholder="First Name"
                 value={firstName}
@@ -220,6 +222,7 @@ function AddContact({route, navigation, store}) {
                 onBlur={() => isValidName(firstName)}
               />
               <TextInput
+                testID="lastName"
                 style={styles.nameTextInputStyle}
                 placeholder="Last Name"
                 value={lastName}
@@ -228,6 +231,7 @@ function AddContact({route, navigation, store}) {
               />
             </View>
             <TextInput
+              testID="phoneNumber"
               style={styles.phoneEmailTextInputStyle}
               placeholder="Phone Number"
               value={phone}
@@ -237,17 +241,19 @@ function AddContact({route, navigation, store}) {
             />
 
             <TextInput
+              testID="emailId"
               style={styles.phoneEmailTextInputStyle}
               placeholder="E-mail Address"
               value={email}
               keyboardType="email-address"
               onChangeText={(text) => setEmail(text)}
-              onEndEditing={() => isValidEmail(email)}
+              onBlur={() => isValidEmail(email)}
             />
 
             <TouchableOpacity
+              testID="submit"
               style={styles.commandButton}
-              onPress={(event) => onUpdateContact(event)}>
+              onPress={() => onUpdateContact()}>
               <Text style={styles.panelButtonTitle}>
                 {addorEdit === true ? 'Create Contact' : 'Update Contact'}
               </Text>

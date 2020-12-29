@@ -70,16 +70,19 @@ const ShowContact = ({route, navigation, store}) => {
       </View>
       <View style={styles.userInfoSectionOptions}>
         <TouchableOpacity
+          testID='phonecall'
           style={styles.userInfoSectionDesign}
           onPress={() => Communications.phonecall(phone, true)}>
           <Icon name="phone" color="#111111" size={60} />
         </TouchableOpacity>
         <TouchableOpacity
+          testID='textmessage'
           style={styles.userInfoSectionDesign}
           onPress={() => Communications.text(phone, null)}>
           <Icon name="message-text" color="#111111" size={60} />
         </TouchableOpacity>
         <TouchableOpacity
+          testID='emailid'
           style={styles.userInfoSectionDesign}
           onPress={() => Communications.email([email], null, null, null, null)}>
           <Icon name="email" color="#111111" size={60} />
@@ -87,6 +90,7 @@ const ShowContact = ({route, navigation, store}) => {
       </View>
       <View style={styles.userInfoSection}>
         <TouchableOpacity
+          testID='editcontact'
           style={styles.commandButton}
           onPress={() =>
             navigation.navigate('AddContact', {
