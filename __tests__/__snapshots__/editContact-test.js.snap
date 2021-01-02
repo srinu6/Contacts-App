@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should call Edit Contact functions calling, RenderHeader 1`] = `ShallowWrapper {}`;
+
+exports[`Should call Edit Contact functions calling, RenderInner 1`] = `ShallowWrapper {}`;

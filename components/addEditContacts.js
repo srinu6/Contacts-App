@@ -107,11 +107,13 @@ function AddContact({route, navigation, store}) {
         <Text style={styles.panelSubtitle}>Choose a Picture</Text>
       </View>
       <TouchableOpacity
+        testID='uploadphoto'
         style={styles.panelButton}
         onPress={takePhotoFromCamera}>
         <Text style={styles.panelButtonTitle}>Take Photo</Text>
       </TouchableOpacity>
       <TouchableOpacity
+        testID='libraryphoto'
         style={styles.panelButton}
         onPress={choosePhotoFromLibrary}>
         <Text style={styles.panelButtonTitle}>Choose From Library</Text>
@@ -140,6 +142,7 @@ function AddContact({route, navigation, store}) {
       compressImageQuality: 0.7,
     }).then((response) => {
       setImage(response.path);
+   //  console.log(response.path,'image')
     });
   };
 
@@ -170,7 +173,6 @@ function AddContact({route, navigation, store}) {
   return (
     <View style={styles.viewFlex}>
       <BottomSheet
-        testID='bottomSheet'
         ref={bottomsheet}
         snapPoints={[330, 0]}
         renderContent={renderInner}
