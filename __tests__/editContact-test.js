@@ -4,20 +4,23 @@ import AddEditContact from '../components/addEditContacts';
 import renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {mount} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import {render, fireEvent} from 'react-native-testing-library';
+import BottomSheet from 'reanimated-bottom-sheet';
+import ImagePicker from 'react-native-image-crop-picker';
+
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
   useDispatch: () => mockDispatch,
 }));
 
-const renderInner=jest.fn();
-const renderHeader=jest.fn();
-jest.mock('reanimated-bottom-sheet', ()=>({
-  renderContent: () => renderInner,
-  renderHeader: () => renderHeader,
+jest.mock('react-native-image-crop-picker', ()=>({
+  
+  openCamera: jest.fn(),
+  then: jest.fn(image),
 }));
+jest.mock('reanimated-bottom-sheet');
 jest.mock('react-native-reanimated', () => {
   const View = require('react-native').View;
   return {
@@ -91,7 +94,7 @@ const wrapper = mount(
     route={routeForEditContact}
     navigation={navigation}
     store={store}
-  />,
+  />
 );
 
 const wrap = renderer
@@ -341,5 +344,55 @@ describe('Should call Edit Contact', () => {
     fireEvent(getByTestId('lastName'), 'blur');
     fireEvent(getByTestId('phoneNumber'), 'blur');
     fireEvent(getByTestId('emailId'), 'blur');
+   // fireEvent(getByTestId('bottomsheet'), 'renderInner')
+  });
+});
+
+describe('Should call Edit Contact', () => {
+  it('functions calling, RenderHeader', () => {
+    const wrapshallow = shallow(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+    const bottomSheetFind=wrapshallow.find(BottomSheet)
+    const renderHeaderPart=bottomSheetFind.renderProp('renderHeader')();
+    expect(renderHeaderPart).toMatchSnapshot();
+  });
+});
+
+describe('Should call Edit Contact', () => {
+  it('functions calling, RenderInner', () => {
+    const wrapshallowinner = shallow(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+    const bottomSheetFind=wrapshallowinner.find(BottomSheet)
+    const renderInnerPart=bottomSheetFind.renderProp('renderContent')();
+    expect(renderInnerPart).toMatchSnapshot();
+  });
+});
+
+describe('Should call Edit Contact', () => {
+  it('functions calling, RenderInner, not a snap', () => {
+    const wrapshallowinner = shallow(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+    const bottomSheetFind=wrapshallowinner.find(BottomSheet)
+    const renderInnerPart=bottomSheetFind.renderProp('renderContent')();
+    //expect(renderInnerPart).toMatchSnapshot();
+    //console.log(renderInnerPart.debug(), 'instance')
+    const {getByTestId} = render(renderInnerPart);
+    fireEvent.press(getByTestId('uploadphoto'));
+    //fireEvent.press(getByTestId('libraryphoto'));
   });
 });

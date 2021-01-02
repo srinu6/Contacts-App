@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1609232243833" clover="3.2.0">
-  <project timestamp="1609232243833" name="All files">
-    <metrics statements="189" coveredstatements="168" conditionals="59" coveredconditionals="47" methods="60" coveredmethods="48" elements="308" coveredelements="263" complexity="0" loc="189" ncloc="189" packages="6" files="11" classes="11"/>
+<coverage generated="1609609256265" clover="3.2.0">
+  <project timestamp="1609609256265" name="All files">
+    <metrics statements="189" coveredstatements="171" conditionals="59" coveredconditionals="47" methods="60" coveredmethods="51" elements="308" coveredelements="269" complexity="0" loc="189" ncloc="189" packages="6" files="11" classes="11"/>
     <package name="ContactsApplication">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="App.js" path="/Users/msrinuva/Desktop/ContactsApplication/App.js">
@@ -27,21 +27,21 @@
       </file>
     </package>
     <package name="ContactsApplication.components">
-      <metrics statements="134" coveredstatements="113" conditionals="42" coveredconditionals="31" methods="46" coveredmethods="34"/>
+      <metrics statements="134" coveredstatements="116" conditionals="42" coveredconditionals="31" methods="46" coveredmethods="37"/>
       <file name="addEditContacts.js" path="/Users/msrinuva/Desktop/ContactsApplication/components/addEditContacts.js">
-        <metrics statements="65" coveredstatements="48" conditionals="30" coveredconditionals="20" methods="23" coveredmethods="14"/>
-        <line num="32" count="16" type="stmt"/>
-        <line num="34" count="16" type="cond" truecount="2" falsecount="0"/>
+        <metrics statements="65" coveredstatements="51" conditionals="30" coveredconditionals="20" methods="23" coveredmethods="17"/>
+        <line num="32" count="19" type="stmt"/>
+        <line num="34" count="19" type="cond" truecount="2" falsecount="0"/>
         <line num="35" count="0" type="stmt"/>
-        <line num="37" count="16" type="stmt"/>
-        <line num="39" count="16" type="stmt"/>
-        <line num="40" count="16" type="stmt"/>
-        <line num="41" count="16" type="stmt"/>
-        <line num="42" count="16" type="stmt"/>
-        <line num="43" count="16" type="stmt"/>
-        <line num="44" count="16" type="stmt"/>
-        <line num="46" count="16" type="cond" truecount="2" falsecount="0"/>
-        <line num="47" count="13" type="stmt"/>
+        <line num="37" count="19" type="stmt"/>
+        <line num="39" count="19" type="stmt"/>
+        <line num="40" count="19" type="stmt"/>
+        <line num="41" count="19" type="stmt"/>
+        <line num="42" count="19" type="stmt"/>
+        <line num="43" count="19" type="stmt"/>
+        <line num="44" count="19" type="stmt"/>
+        <line num="46" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="16" type="stmt"/>
         <line num="48" count="5" type="cond" truecount="4" falsecount="0"/>
         <line num="49" count="4" type="stmt"/>
         <line num="50" count="4" type="stmt"/>
@@ -49,7 +49,7 @@
         <line num="52" count="4" type="stmt"/>
         <line num="53" count="4" type="stmt"/>
         <line num="55" count="5" type="stmt"/>
-        <line num="59" count="16" type="stmt"/>
+        <line num="59" count="19" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
         <line num="69" count="1" type="stmt"/>
         <line num="70" count="1" type="stmt"/>
@@ -67,34 +67,34 @@
         <line num="93" count="0" type="stmt"/>
         <line num="94" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="95" count="0" type="stmt"/>
-        <line num="100" count="16" type="stmt"/>
-        <line num="101" count="16" type="stmt"/>
-        <line num="103" count="16" type="stmt"/>
-        <line num="104" count="0" type="stmt"/>
-        <line num="121" count="0" type="stmt"/>
-        <line num="127" count="16" type="stmt"/>
-        <line num="128" count="0" type="stmt"/>
-        <line num="135" count="16" type="stmt"/>
-        <line num="136" count="0" type="stmt"/>
-        <line num="142" count="0" type="stmt"/>
-        <line num="146" count="16" type="stmt"/>
-        <line num="147" count="0" type="stmt"/>
-        <line num="153" count="0" type="stmt"/>
-        <line num="157" count="16" type="stmt"/>
-        <line num="158" count="15" type="stmt"/>
-        <line num="160" count="1" type="stmt"/>
-        <line num="170" count="16" type="stmt"/>
-        <line num="191" count="0" type="stmt"/>
-        <line num="221" count="1" type="stmt"/>
+        <line num="100" count="19" type="stmt"/>
+        <line num="101" count="19" type="stmt"/>
+        <line num="103" count="19" type="stmt"/>
+        <line num="104" count="2" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="129" count="19" type="stmt"/>
+        <line num="130" count="1" type="stmt"/>
+        <line num="137" count="19" type="stmt"/>
+        <line num="138" count="1" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="148" count="19" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="159" count="19" type="stmt"/>
+        <line num="160" count="15" type="stmt"/>
+        <line num="162" count="1" type="stmt"/>
+        <line num="172" count="19" type="stmt"/>
+        <line num="192" count="0" type="stmt"/>
         <line num="222" count="1" type="stmt"/>
-        <line num="229" count="1" type="stmt"/>
+        <line num="223" count="1" type="stmt"/>
         <line num="230" count="1" type="stmt"/>
-        <line num="239" count="1" type="stmt"/>
+        <line num="231" count="1" type="stmt"/>
         <line num="240" count="1" type="stmt"/>
-        <line num="249" count="1" type="stmt"/>
+        <line num="241" count="1" type="stmt"/>
         <line num="250" count="1" type="stmt"/>
-        <line num="256" count="1" type="stmt"/>
-        <line num="270" count="3" type="stmt"/>
+        <line num="251" count="1" type="stmt"/>
+        <line num="257" count="1" type="stmt"/>
+        <line num="271" count="3" type="stmt"/>
       </file>
       <file name="contactDetails.js" path="/Users/msrinuva/Desktop/ContactsApplication/components/contactDetails.js">
         <metrics statements="25" coveredstatements="24" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="6"/>
