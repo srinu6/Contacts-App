@@ -17,9 +17,11 @@ jest.mock('react-redux', () => ({
 
 jest.mock('react-native-image-crop-picker', ()=>({
   
-  openCamera: jest.fn(),
-  then: jest.fn(image),
+  openCamera: jest.fn().mockImplementation(() => Promise.resolve()),
+  openPicker: jest.fn().mockImplementation(() => Promise.resolve()),
+ // then: jest.fn(),
 }));
+
 jest.mock('reanimated-bottom-sheet');
 jest.mock('react-native-reanimated', () => {
   const View = require('react-native').View;
@@ -41,6 +43,14 @@ jest.mock('react-native-reanimated', () => {
     },
   };
 });
+
+// jest.mock('react-native-device-info', () => ({
+//   getSystemVersion: () => 'iOS 10.2',
+//   getVersion: () => '1.1.0',
+//   getModel: () => 'iPhone XR',
+
+//   getDeviceId: () => 'test-device-id',
+// }));
 const navigation = {navigate: jest.fn()};
 const routeForEditContact = {
   params: {
@@ -89,6 +99,9 @@ const store = mockStore({
   },
 });
 
+// export default {
+//   openPicker: jest.fn().mockImplementation(() => Promise.resolve(result))
+// };
 const wrapper = mount(
   <AddEditContact
     route={routeForEditContact}
@@ -394,5 +407,24 @@ describe('Should call Edit Contact', () => {
     const {getByTestId} = render(renderInnerPart);
     fireEvent.press(getByTestId('uploadphoto'));
     //fireEvent.press(getByTestId('libraryphoto'));
+  });
+});
+
+describe('Should call Edit Contact, choosePhotoFromLibrary', () => {
+  it('functions calling, RenderInner, not a snap, choosePhotoFromLibrary', () => {
+    const wrapshallowheader = shallow(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+    const bottomSheetFindHeader=wrapshallowheader.find(BottomSheet)
+    const renderHeaderPart=bottomSheetFindHeader.renderProp('renderContent')();
+    //expect(renderInnerPart).toMatchSnapshot();
+    //console.log(renderInnerPart.debug(), 'instance')
+    const {getByTestId} = render(renderHeaderPart);
+   // fireEvent.press(getByTestId('uploadphoto'));
+    fireEvent.press(getByTestId('libraryphoto'));
   });
 });
