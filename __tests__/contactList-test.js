@@ -14,8 +14,8 @@ jest.mock('react-redux', () => ({
   useDispatch: () => mockDispatch,
 }));
 
-jest.mock("react-native-device-detection", () => ({
-  isIphoneX: jest.fn().mockReturnValue(true)
+jest.mock('react-native-device-detection', () => ({
+  isIphoneX: jest.fn().mockReturnValue(true),
 }));
 const Device = require('react-native-device-detection');
 const navigation = {navigate: jest.fn()};
@@ -50,7 +50,7 @@ describe('<ContactList />', () => {
 });
 
 describe('<ContactList />', () => {
-  it('should check search field', () => {
+  it('Should check Search field', () => {
     const {getByTestId} = render(
       <ContactList navigation={navigation} store={store} />,
     );
@@ -63,9 +63,8 @@ describe('<ContactList />', () => {
   });
 });
 
-
-describe('Checks different Icons', () => {
-  it('checking Icons and their operations', () => {
+describe('Checks Add New Contact condition for different devices', () => {
+  it('if condition for iPhoneX', () => {
     const {getByTestId} = render(
       <ContactList navigation={navigation} store={store} />,
     );

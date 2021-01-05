@@ -30,11 +30,10 @@ import {
 
 function AddContact({route, navigation, store}) {
   const {contactId, addorEdit} = route.params;
-  let contact = 
+  let contact =
     addorEdit === false
       ? useSelector((state) => state.contactStore.contact)
       : null;
-  console.log(contact, 'branch contact 1')    
   contact =
     store == null ? contact : store.getState().contactStore.contact[contactId];
   const dispatch = useDispatch();
@@ -58,7 +57,7 @@ function AddContact({route, navigation, store}) {
   }
 
   const onUpdateContact = () => {
-   // event.preventDefault();
+    // event.preventDefault();
     const update_contact = {
       id: contactId,
       firstName: firstName,
@@ -108,13 +107,13 @@ function AddContact({route, navigation, store}) {
         <Text style={styles.panelSubtitle}>Choose a Picture</Text>
       </View>
       <TouchableOpacity
-        testID='uploadphoto'
+        testID="uploadphoto"
         style={styles.panelButton}
         onPress={takePhotoFromCamera}>
         <Text style={styles.panelButtonTitle}>Take Photo</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        testID='libraryphoto'
+        testID="libraryphoto"
         style={styles.panelButton}
         onPress={choosePhotoFromLibrary}>
         <Text style={styles.panelButtonTitle}>Choose From Library</Text>
@@ -143,7 +142,7 @@ function AddContact({route, navigation, store}) {
       compressImageQuality: 0.7,
     }).then((response) => {
       setImage(response.path);
-   //  console.log(response.path,'image')
+      //  console.log(response.path,'image')
     });
   };
 
@@ -161,7 +160,9 @@ function AddContact({route, navigation, store}) {
   const Title = () => {
     return (
       <View style={styles.headingView}>
-        <TouchableOpacity testID='navigation' onPress={() => navigation.navigate('Contacts')}>
+        <TouchableOpacity
+          testID="navigation"
+          onPress={() => navigation.navigate('Contacts')}>
           <Icon name="arrow-left" size={30} />
         </TouchableOpacity>
         <Text style={styles.headingText}>
@@ -191,7 +192,9 @@ function AddContact({route, navigation, store}) {
           <Title />
 
           <View style={styles.bottonSheetCenter}>
-            <TouchableOpacity testID='bottomsheetsnaps' onPress={() => bottomsheet.current.snapTo(0)}>
+            <TouchableOpacity
+              testID="bottomsheetsnaps"
+              onPress={() => bottomsheet.current.snapTo(0)}>
               <View style={styles.imageBackGroundView}>
                 <ImageBackground
                   source={{

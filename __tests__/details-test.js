@@ -8,53 +8,12 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {mount} from 'enzyme';
 import {render, fireEvent} from 'react-native-testing-library';
-// import {Provider} from 'react-redux/src'
-// import {getContact} from '../actions/contactAction'
-// import renderer from 'react-test-renderer';
-// import { useSelector, useDispatch } from 'react-redux';
-// import configureStore from 'redux-mock-store'
-//import Adapter from 'enzyme-adapter-react-16';
-// const mockStore = configureMockStore()
-// const mockStore = configureStore();
-// const store = mockStore({})
-//import storeReal from '../store'
-//import {combineReducers} from '../reducers'
-// import {
-//   navigationProps,
-//   fireEvent,
-//   generateMockReduxStore,
-//   renderWithContext,
-// } from 'testing';
-//   console.log(wrapper.children[1].children[0].children[1].children[1], 'contact details')
-// console.log(wrapper.children[1].children[0].children[1].props)
-//console.log(wrapper.find('View').debug(), 'components inners check')
 
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
   useDispatch: () => mockDispatch,
 }));
-jest.mock('reanimated-bottom-sheet');
-jest.mock('react-native-reanimated', () => {
-  const View = require('react-native').View;
-  return {
-    Value: jest.fn(),
-    event: jest.fn(),
-    add: jest.fn(),
-    eq: jest.fn(),
-    set: jest.fn(),
-    cond: jest.fn(),
-    interpolate: jest.fn(),
-    multiply: jest.fn(),
-    View: View,
-    Extrapolate: {CLAMP: jest.fn()},
-    Transition: {
-      Together: 'Together',
-      Out: 'Out',
-      In: 'In',
-    },
-  };
-});
 
 const navigation = {navigate: jest.fn()};
 const route = {
@@ -217,7 +176,7 @@ describe('This will check contacts details screen, EmailID', () => {
 });
 
 describe('Checks different Icons, Touchable Opacities', () => {
-  it('checking and their operations', () => {
+  it('Icons checking and their operations', () => {
     const {getByTestId} = render(
       <ContactDetails route={route} navigation={navigation} store={null} />,
     );

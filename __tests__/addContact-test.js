@@ -95,45 +95,12 @@ const wrapShallow = shallow(
   />,
 );
 
-const wrap = renderer
+const wrapRenderer = renderer
   .create(<AddEditContact route={routeForAddContact} navigation={navigation} />)
   .toJSON();
 
-// console.log(wrapper, 'component');
-// console.log(wrapper.children[0], 'Animated view');
-// console.log(wrapper.children[0].children[0], 'Scrollview');
-// console.log(wrapper.children[0].children[0].children[0], 'Inside Scrollview');
-// console.log(wrapper.children[0].children[0].children[0].children[0], 'Title');
-// console.log(
-//   wrapper.children[0].children[0].children[0].children[1],
-//   'Contacts Photo',
-// );
-// console.log(
-//   wrapper.children[0].children[0].children[0].children[2],
-//   'Testinput fields',
-// );
-// console.log(
-//   wrapper.children[0].children[0].children[0].children[2].children[0],
-//   'Firstname and Lastname',
-// );
-// console.log(
-//   wrapper.children[0].children[0].children[0].children[2].children[0]
-//     .children[0],
-//   'First Name',
-// );
-// console.log(
-//   wrapper.children[0].children[0].children[0].children[2].children[1].props
-//     .value,
-//   'Phone Number',
-// );
-// console.log(
-//   wrapper.children[0].children[0].children[0].children[2].children[3]
-//     .children[0],
-//   'Create or Update Contact touchable opacity',
-// );
-
-describe("Search component", () => {
-  test("renders", () => {
+describe('Search component', () => {
+  it('renders', () => {
     expect(wrapShallow.exists()).toBe(true);
   });
 });
@@ -141,7 +108,7 @@ describe("Search component", () => {
 describe('Should call Add Contact for checking Create Contact', () => {
   it('Adding a Contact, this will check Create Contact', () => {
     expect(
-      wrap.children[0].children[0].children[0].children[2].children[3]
+      wrapRenderer.children[0].children[0].children[0].children[2].children[3]
         .children[0].children[0],
     ).toBe('Create Contact');
   });

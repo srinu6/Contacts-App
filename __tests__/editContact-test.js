@@ -8,16 +8,13 @@ import {mount, shallow} from 'enzyme';
 import {render, fireEvent} from 'react-native-testing-library';
 import BottomSheet from 'reanimated-bottom-sheet';
 
-//import ImagePicker from 'react-native-image-crop-picker';
-const Device = require('react-native-device-detection');
-//import { isAndroid } from 'react-native-device-detection'
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
-  ...jest.requireActual("react-redux"),
+  ...jest.requireActual('react-redux'),
   useSelector: jest.fn(),
   useDispatch: () => mockDispatch,
 }));
-jest.mock('react-native-image-crop-picker', ()=>({
+jest.mock('react-native-image-crop-picker', () => ({
   openCamera: jest.fn().mockImplementation(() => Promise.resolve()),
   openPicker: jest.fn().mockImplementation(() => Promise.resolve()),
 }));
@@ -44,13 +41,6 @@ jest.mock('react-native-reanimated', () => {
   };
 });
 
- jest.mock('react-native-device-detection', () => ({
-//   getSystemVersion: () => 'iOS 10.2',
-//   getVersion: () => '1.1.0',
-//   getModel: () => 'iPhone XR',
-//   getDeviceId: () => 'test-device-id',
-     isIphoneX: jest.fn()
-}));
 const navigation = {navigate: jest.fn()};
 const routeForEditContact = {
   params: {
@@ -145,7 +135,7 @@ const storeConditionLastName = mockStore({
   },
 });
 
-const storeConditionPhoneNumber= mockStore({
+const storeConditionPhoneNumber = mockStore({
   contactStore: {
     contact: [
       {
@@ -168,7 +158,7 @@ const storeConditionPhoneNumber= mockStore({
   },
 });
 
-const storeConditionEmail= mockStore({
+const storeConditionEmail = mockStore({
   contactStore: {
     contact: [
       {
@@ -196,40 +186,25 @@ const wrapper = mount(
     route={routeForEditContact}
     navigation={navigation}
     store={store}
-  />
+  />,
 );
 
-const wrap = renderer
+const wrapRenderer = renderer
   .create(
     <AddEditContact route={routeForEditContact} navigation={navigation} />,
   )
   .toJSON();
 
-describe('Should call Edit Contact, to check branch', () => {
-  it('branch checking', () => {
-    const wrapperMount = mount(
-      <AddEditContact
-        route={routeForEditContact}
-        navigation={navigation}
-        store={null}
-      />
-    );
-   // getItDisplayed.mockReturnValue(null)
-    console.log(wrapperMount, 'useSelector branch')
-  });
-});  
-
 describe('Should call Edit Contact', () => {
-  it('Adding a Contact, this will check Create Contact', () => {
+  it('Updating a Contact, this will check Update Contact', () => {
     expect(
-      wrap.children[0].children[0].children[0].children[2].children[3]
+      wrapRenderer.children[0].children[0].children[0].children[2].children[3]
         .children[0].children[0],
     ).toBe('Update Contact');
   });
 });
 
-
-describe('Should call Edit Contact', () => {
+describe('Should call Edit Contact for checking TestInput', () => {
   it('change input First Name, Last Name, Phone Number, EmailID', () => {
     const {getByTestId} = render(
       <AddEditContact
@@ -253,9 +228,8 @@ describe('Should call Edit Contact', () => {
   });
 });
 
-describe('Checks different TouchableOpacities', () =>{
-  it('touchable opacity', () => {
-    
+describe('Checks different TouchableOpacities', () => {
+  it('Update & Navigation touchable opacity', () => {
     const componentTouch = render(
       <AddEditContact
         route={routeForEditContact}
@@ -268,13 +242,11 @@ describe('Checks different TouchableOpacities', () =>{
 
     const touchableNavigation = componentTouch.getByTestId('navigation');
     fireEvent.press(touchableNavigation);
+  });
+});
 
-})
-})
-
-describe('Checking submit TouchableOpacity, conditions, validFirstNameCheck', () =>{
+describe('Checking submit TouchableOpacity, conditions, validFirstNameCheck', () => {
   it('if else condition checking ', () => {
-
     const componentTouch = render(
       <AddEditContact
         route={routeForEditContact}
@@ -284,13 +256,11 @@ describe('Checking submit TouchableOpacity, conditions, validFirstNameCheck', ()
     );
     const touchableSubmit = componentTouch.getByTestId('submit');
     fireEvent.press(touchableSubmit);
+  });
+});
 
-})
-})
-
-describe('Checking submit TouchableOpacity, conditions, validLastNameCheck', () =>{
-  it('if else condition checking ', () => {
-
+describe('Checking submit TouchableOpacity, conditions, validLastNameCheck', () => {
+  it('if else condition checking, validLastNameCheck ', () => {
     const componentTouch = render(
       <AddEditContact
         route={routeForEditContact}
@@ -300,13 +270,11 @@ describe('Checking submit TouchableOpacity, conditions, validLastNameCheck', () 
     );
     const touchableSubmit = componentTouch.getByTestId('submit');
     fireEvent.press(touchableSubmit);
+  });
+});
 
-})
-})
-
-describe('Checking submit TouchableOpacity, conditions, validPhoneCheck', () =>{
-  it('if else condition checking ', () => {
-
+describe('Checking submit TouchableOpacity, conditions, validPhoneCheck', () => {
+  it('if else condition checking, validPhoneCheck ', () => {
     const componentTouch = render(
       <AddEditContact
         route={routeForEditContact}
@@ -316,13 +284,11 @@ describe('Checking submit TouchableOpacity, conditions, validPhoneCheck', () =>{
     );
     const touchableSubmit = componentTouch.getByTestId('submit');
     fireEvent.press(touchableSubmit);
+  });
+});
 
-})
-})
-
-describe('Checking submit TouchableOpacity, conditions, validEmailCheck', () =>{
-  it('if else condition checking ', () => {
-
+describe('Checking submit TouchableOpacity, conditions, validEmailCheck', () => {
+  it('if else condition checking, validEmailCheck ', () => {
     const componentTouch = render(
       <AddEditContact
         route={routeForEditContact}
@@ -332,9 +298,21 @@ describe('Checking submit TouchableOpacity, conditions, validEmailCheck', () =>{
     );
     const touchableSubmit = componentTouch.getByTestId('submit');
     fireEvent.press(touchableSubmit);
+  });
+});
 
-})
-})
+describe('Should call Edit Contact, to check branch', () => {
+  it('useSelector branch checking', () => {
+    const wrapperMount = mount(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={null}
+      />,
+    );
+    console.log(wrapperMount, 'useSelector branch');
+  });
+});
 
 describe('Should call Edit Contact', () => {
   it('this will check name field in Edit Contact', () => {
@@ -524,7 +502,6 @@ describe('Should call Edit Contact', () => {
     fireEvent(getByTestId('lastName'), 'blur');
     fireEvent(getByTestId('phoneNumber'), 'blur');
     fireEvent(getByTestId('emailId'), 'blur');
-   // fireEvent(getByTestId('bottomsheet'), 'renderInner')
   });
 });
 
@@ -537,8 +514,8 @@ describe('Should call Edit Contact', () => {
         store={store}
       />,
     );
-    const bottomSheetFind=wrapshallow.find(BottomSheet)
-    const renderHeaderPart=bottomSheetFind.renderProp('renderHeader')();
+    const bottomSheetFind = wrapshallow.find(BottomSheet);
+    const renderHeaderPart = bottomSheetFind.renderProp('renderHeader')();
     expect(renderHeaderPart).toMatchSnapshot();
   });
 });
@@ -552,23 +529,23 @@ describe('Should call Edit Contact', () => {
         store={store}
       />,
     );
-    const bottomSheetFind=wrapshallowinner.find(BottomSheet)
-    const renderInnerPart=bottomSheetFind.renderProp('renderContent')();
+    const bottomSheetFind = wrapshallowinner.find(BottomSheet);
+    const renderInnerPart = bottomSheetFind.renderProp('renderContent')();
     expect(renderInnerPart).toMatchSnapshot();
   });
 });
 
 describe('Should call Edit Contact', () => {
   it('functions calling, RenderInner, not a snap', () => {
-    const wrapshallowinner = shallow(
+    const wrapShallowInner = shallow(
       <AddEditContact
         route={routeForEditContact}
         navigation={navigation}
         store={store}
       />,
     );
-    const bottomSheetFind=wrapshallowinner.find(BottomSheet)
-    const renderInnerPart=bottomSheetFind.renderProp('renderContent')();
+    const bottomSheetFind = wrapShallowInner.find(BottomSheet);
+    const renderInnerPart = bottomSheetFind.renderProp('renderContent')();
     const {getByTestId} = render(renderInnerPart);
     fireEvent.press(getByTestId('uploadphoto'));
   });
@@ -576,15 +553,17 @@ describe('Should call Edit Contact', () => {
 
 describe('Should call Edit Contact & choosePhotoFromLibrary function', () => {
   it('functions calling, RenderInner, choosePhotoFromLibrary', () => {
-    const wrapshallowheader = shallow(
+    const wrapShallowHeader = shallow(
       <AddEditContact
         route={routeForEditContact}
         navigation={navigation}
         store={store}
       />,
     );
-    const bottomSheetFindHeader=wrapshallowheader.find(BottomSheet)
-    const renderHeaderPart=bottomSheetFindHeader.renderProp('renderContent')();
+    const bottomSheetFindHeader = wrapShallowHeader.find(BottomSheet);
+    const renderHeaderPart = bottomSheetFindHeader.renderProp(
+      'renderContent',
+    )();
     const {getByTestId} = render(renderHeaderPart);
     fireEvent.press(getByTestId('libraryphoto'));
   });

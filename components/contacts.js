@@ -30,7 +30,7 @@ const Contact = ({contact}) => {
     <>
       <ListItem avatar>
         <TouchableOpacity
-          testID='navigationtodetails'
+          testID="navigationtodetails"
           style={styles.detailsOpacity}
           onPress={() => navigation.navigate('Details', {contactId: id})}>
           <Left>{avatarImage}</Left>
@@ -41,15 +41,20 @@ const Contact = ({contact}) => {
             <Text style={styles.textColor}>{phone}</Text>
           </Body>
           <Right style={styles.iconStyle}>
-            <IconEntypo testID='delete' name="trash" size={20} onPress={() => deleting()} />
             <IconEntypo
-              testID='details'
+              testID="delete"
+              name="trash"
+              size={20}
+              onPress={() => deleting()}
+            />
+            <IconEntypo
+              testID="details"
               name="info-with-circle"
               size={20}
               onPress={() => navigation.navigate('Details', {contactId: id})}
             />
             <IconEntypo
-              testID='editcontact'
+              testID="editcontact"
               name="pencil"
               size={20}
               onPress={() =>

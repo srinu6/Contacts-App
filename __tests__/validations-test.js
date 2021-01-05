@@ -6,7 +6,6 @@ import {
   isValidPhoneNumber,
 } from '../utils/validations';
 
-// const valid= require('../utils/validations')
 test('Valid Email', () => {
   expect(isValidEmail('sri@gmail.com')).toBeTruthy();
   expect(isValidEmail('s3@g.c')).toBeTruthy();
