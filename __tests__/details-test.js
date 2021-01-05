@@ -69,109 +69,28 @@ const wrapper = mount(
 
 describe('This will check contacts details screen, Name', () => {
   it('Should check Name of the contact', () => {
-    console.log(
-      wrapper
-        .find('ShowContact')
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .text(),
-      'Full Name',
+    const {queryByText} = render(
+      <ContactDetails route={route} navigation={navigation} store={store} />,
     );
-    expect(
-      wrapper
-        .find('ShowContact')
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .text(),
-    ).toBe('Super Man');
+    expect(queryByText('Super Man')).not.toBeNull();
   });
 });
 
 describe('This will check contacts details screen, Phone Number ', () => {
   it('Should check Phone number of the contact', () => {
-    console.log(
-      wrapper
-        .find('ShowContact')
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .text(),
-      'Phone Number',
+    const {queryByText} = render(
+      <ContactDetails route={route} navigation={navigation} store={store} />,
     );
-    expect(
-      wrapper
-        .find('ShowContact')
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .text(),
-    ).toBe('9876543234');
+    expect(queryByText('9876543234')).not.toBeNull();
   });
 });
 
 describe('This will check contacts details screen, EmailID', () => {
   it('Should check EmailID of the contact', () => {
-    console.log(
-      wrapper
-        .find('ShowContact')
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(2)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .text(),
-      'Email ID',
+    const {queryByText} = render(
+      <ContactDetails route={route} navigation={navigation} store={store} />,
     );
-    expect(
-      wrapper
-        .find('ShowContact')
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(2)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .text(),
-    ).toBe('superman@hero.com');
+    expect(queryByText('superman@hero.com')).not.toBeNull();
   });
 });
 

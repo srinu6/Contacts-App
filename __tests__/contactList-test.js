@@ -33,33 +33,28 @@ const store = mockStore({
     ],
   },
 });
-const wrapper = renderer
-  .create(<ContactList navigation={navigation} store={store} />)
-  .toJSON();
 
 describe('<ContactList />', () => {
   it('should contain Add New Contact', () => {
-    console.log(
-      wrapper[2].children[0].children[0].children[0].children[0],
-      'Butoon Text',
+    const {queryByText} = render(
+      <ContactList navigation={navigation} store={store} />,
     );
-    expect(wrapper[2].children[0].children[0].children[0].children[0]).toBe(
-      'Add New Contact',
-    );
+    expect(queryByText('Add New Contact')).not.toBeNull();
   });
 });
 
 describe('<ContactList />', () => {
-  it('Should check Search field', () => {
+  it('should check search field', () => {
     const {getByTestId} = render(
       <ContactList navigation={navigation} store={store} />,
     );
     fireEvent.changeText(getByTestId('searchinput'), 'r');
     expect(getByTestId('searchinput').props.value).toEqual('r');
 
-    expect(
-      wrapper[0].children[0].children[0].children[1].children[0].children[0],
-    ).toBe('Search');
+    const {queryByText} = render(
+      <ContactList navigation={navigation} store={store} />,
+    );
+    expect(queryByText('Search')).not.toBeNull();
   });
 });
 

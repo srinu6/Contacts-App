@@ -53,7 +53,7 @@ const ShowContact = ({route, navigation, store}) => {
         <View style={styles.userInfoSection}>
           <View style={styles.row}>
             <Icon name="account-box" color="#511e31" size={20} />
-            <Text style={styles.detailsText}>
+            <Text testID="name" style={styles.detailsText}>
               {firstName} {lastName}
             </Text>
           </View>
