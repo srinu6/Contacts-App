@@ -14,10 +14,10 @@ jest.mock('react-redux', () => ({
   useDispatch: () => mockDispatch,
 }));
 
-// jest.mock("react-native-device-detection", () => ({
-//   ...mockRNDeviceInfo,
-//   useBatteryLevel: mockRNDeviceInfo.getBatteryLevel,
-// }));
+jest.mock("react-native-device-detection", () => ({
+  isIphoneX: jest.fn().mockReturnValue(true)
+}));
+const Device = require('react-native-device-detection');
 const navigation = {navigate: jest.fn()};
 const store = mockStore({
   contactStore: {
@@ -63,14 +63,13 @@ describe('<ContactList />', () => {
   });
 });
 
+
 describe('Checks different Icons', () => {
   it('checking Icons and their operations', () => {
     const {getByTestId} = render(
       <ContactList navigation={navigation} store={store} />,
     );
-    // const iPhoneSize = getByTestId('iphonex');
-    // fireEvent.press(iPhoneSize);
-    const otherPhoneSize = getByTestId('otherphone');
-    fireEvent.press(otherPhoneSize);
+    const iPhoneSize = getByTestId('iphonex');
+    fireEvent.press(iPhoneSize);
   });
 });
