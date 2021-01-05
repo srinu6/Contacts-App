@@ -44,32 +44,20 @@ const wrapRenderer = renderer
   .toJSON();
 
 describe('<Contact />', () => {
-  it('Checking contacts Avatar', () => {
-    const avatar = wrapRenderer.children[0].children[0].children[0];
-    console.log(avatar, 'Avatar');
-  });
-});
-
-describe('<Contact />', () => {
   it('Checking contacts name', () => {
-    const firstName =
-      wrapper.children[0].children[0].children[1].children[0].children[0];
-    const lastName =
-      wrapper.children[0].children[0].children[1].children[0].children[2];
-    const name = firstName.concat(' ').concat(lastName);
-    expect(name).toBe('Iron Man');
+    const {queryByText} = render(
+      <Contact contact={contact} />,
+    );
+    expect(queryByText('Iron Man')).not.toBeNull();
   });
 });
 
 describe('<Contact />', () => {
   it('Checking contacts phone number', () => {
-    console.log(
-      wrapper.children[0].children[0].children[1].children[1].children[0],
-      'Contacts Phone number',
+    const {queryByText} = render(
+      <Contact contact={contact} />,
     );
-    expect(
-      wrapper.children[0].children[0].children[1].children[1].children[0],
-    ).toBe('9848022335');
+    expect(queryByText('9848022335')).not.toBeNull();
   });
 });
 

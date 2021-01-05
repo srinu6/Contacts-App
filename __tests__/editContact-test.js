@@ -1,7 +1,6 @@
 import 'react-native';
 import React from 'react';
 import AddEditContact from '../components/addEditContacts';
-import renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {mount, shallow} from 'enzyme';
@@ -181,26 +180,13 @@ const storeConditionEmail = mockStore({
   },
 });
 
-const wrapper = mount(
-  <AddEditContact
-    route={routeForEditContact}
-    navigation={navigation}
-    store={store}
-  />,
-);
-
-const wrapRenderer = renderer
-  .create(
-    <AddEditContact route={routeForEditContact} navigation={navigation} />,
-  )
-  .toJSON();
 
 describe('Should call Edit Contact', () => {
   it('Updating a Contact, this will check Update Contact', () => {
-    expect(
-      wrapRenderer.children[0].children[0].children[0].children[2].children[3]
-        .children[0].children[0],
-    ).toBe('Update Contact');
+    const {queryByText} = render(
+      <AddEditContact route={routeForEditContact} navigation={navigation} />,
+    );
+    expect(queryByText('Update Contact')).not.toBeNull();
   });
 });
 
@@ -316,175 +302,41 @@ describe('Should call Edit Contact, to check branch', () => {
 
 describe('Should call Edit Contact', () => {
   it('this will check name field in Edit Contact', () => {
-    console.log(
-      wrapper
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(2)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .debug(),
-      'component',
+    const {getByTestId} = render(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
     );
-    console.log(
-      renderer
-        .create(
-          wrapper
-            .childAt(0)
-            .childAt(0)
-            .childAt(1)
-            .childAt(0)
-            .childAt(0)
-            .childAt(0)
-            .childAt(0)
-            .childAt(0)
-            .childAt(0)
-            .childAt(2)
-            .childAt(0)
-            .childAt(0)
-            .childAt(0)
-            .childAt(0)
-            .childAt(0),
-        )
-        .toJSON().props.value,
-      'name',
-    );
-    const firstName = renderer
-      .create(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0),
-      )
-      .toJSON().props.value;
-    const lastName = renderer
-      .create(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0),
-      )
-      .toJSON().props.value;
-    const name = firstName.concat(' ').concat(lastName);
-    expect(name).toBe('Super Man');
+    expect(getByTestId('firstName').props.value).toEqual('Super');
+    expect(getByTestId('lastName').props.value).toEqual('Man');
   });
 });
 
 describe('Should call Edit Contact', () => {
   it('this will check phone numeber field in Edit Contact', () => {
-    console.log(
-      wrapper
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(2)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .debug(),
-      'Phone number',
+    const {getByTestId} = render(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
     );
-    const phoneNumber = renderer
-      .create(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0),
-      )
-      .toJSON().props.value;
-    expect(phoneNumber).toBe('9876543234');
+    expect(getByTestId('phoneNumber').props.value).toEqual('9876543234');
   });
 });
 
 describe('Should call Edit Contact', () => {
   it('this will check Email ID field in Edit Contact', () => {
-    console.log(
-      wrapper
-        .childAt(0)
-        .childAt(0)
-        .childAt(1)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(0)
-        .childAt(2)
-        .childAt(0)
-        .childAt(2)
-        .childAt(0)
-        .debug(),
-      'Email id',
+    const {getByTestId} = render(
+      <AddEditContact
+        route={routeForEditContact}
+        navigation={navigation}
+        store={store}
+      />,
     );
-    const emailID = renderer
-      .create(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0),
-      )
-      .toJSON().props.value;
-    expect(emailID).toBe('superman@hero.com');
+    expect(getByTestId('emailId').props.value).toEqual('superman@hero.com');
   });
 });
 

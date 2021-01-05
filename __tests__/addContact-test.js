@@ -1,10 +1,10 @@
 import 'react-native';
 import React from 'react';
 import AddEditContact from '../components/addEditContacts';
-import renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {mount, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
+import {render} from 'react-native-testing-library';
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
@@ -79,13 +79,13 @@ const store = mockStore({
   },
 });
 
-const wrapper = mount(
-  <AddEditContact
-    route={routeForAddContact}
-    navigation={navigation}
-    store={store}
-  />,
-);
+// const wrapper = mount(
+//   <AddEditContact
+//     route={routeForAddContact}
+//     navigation={navigation}
+//     store={store}
+//   />,
+// );
 
 const wrapShallow = shallow(
   <AddEditContact
@@ -95,9 +95,9 @@ const wrapShallow = shallow(
   />,
 );
 
-const wrapRenderer = renderer
-  .create(<AddEditContact route={routeForAddContact} navigation={navigation} />)
-  .toJSON();
+// const wrapRenderer = renderer
+//   .create(<AddEditContact route={routeForAddContact} navigation={navigation} />)
+//   .toJSON();
 
 describe('Search component', () => {
   it('renders', () => {
@@ -107,109 +107,61 @@ describe('Search component', () => {
 
 describe('Should call Add Contact for checking Create Contact', () => {
   it('Adding a Contact, this will check Create Contact', () => {
-    expect(
-      wrapRenderer.children[0].children[0].children[0].children[2].children[3]
-        .children[0].children[0],
-    ).toBe('Create Contact');
+    const {queryByText} = render(
+      <AddEditContact route={routeForAddContact} navigation={navigation} />,
+    );
+    expect(queryByText('Create Contact')).not.toBeNull();
   });
 });
 
 describe('Should call Add Contact, checks First Name', () => {
   it('Adding a Contact, this will check empty First Name field', () => {
-    const firstName = renderer
-      .create(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0),
-      )
-      .toJSON().props.value;
-    expect(firstName).toBe('');
+    const {getByTestId} = render(
+      <AddEditContact
+        route={routeForAddContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+    expect(getByTestId('firstName').props.value).toEqual('');
   });
 });
 
 describe('Should call Add Contact, checks Last Name', () => {
   it('Adding a Contact, this will check empty Last Name field', () => {
-    const lastName = renderer
-      .create(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0),
-      )
-      .toJSON().props.value;
-    expect(lastName).toBe('');
+    const {getByTestId} = render(
+      <AddEditContact
+        route={routeForAddContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+    expect(getByTestId('lastName').props.value).toEqual('');
   });
 });
 
 describe('Should call Add Contact, checks Phone Number', () => {
   it('Adding a Contact, this will check empty phone number field', () => {
-    const phoneNumber = renderer
-      .create(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0),
-      )
-      .toJSON().props.value;
-    expect(phoneNumber).toBe('');
+    const {getByTestId} = render(
+      <AddEditContact
+        route={routeForAddContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+    expect(getByTestId('phoneNumber').props.value).toEqual('');
   });
 });
 
 describe('Should call Add Contact, checks EmailID', () => {
   it('Adding a Contact, this will check empty Email ID field', () => {
-    const emailID = renderer
-      .create(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .childAt(1)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0)
-          .childAt(2)
-          .childAt(0),
-      )
-      .toJSON().props.value;
-    expect(emailID).toBe('');
+    const {getByTestId} = render(
+      <AddEditContact
+        route={routeForAddContact}
+        navigation={navigation}
+        store={store}
+      />,
+    );
+    expect(getByTestId('emailId').props.value).toEqual('');
   });
 });

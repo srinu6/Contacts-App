@@ -57,7 +57,6 @@ function AddContact({route, navigation, store}) {
   }
 
   const onUpdateContact = () => {
-    // event.preventDefault();
     const update_contact = {
       id: contactId,
       firstName: firstName,
@@ -305,7 +304,6 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   headingText: {
-    marginBottom: 15,
     fontSize: 20,
     marginLeft: 20,
     fontWeight: 'bold',
@@ -313,6 +311,8 @@ const styles = StyleSheet.create({
   headingView: {
     marginTop: 20,
     flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
   },
   photoText: {
     marginTop: 10,
